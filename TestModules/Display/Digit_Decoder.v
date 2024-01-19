@@ -15,8 +15,9 @@
     Outputs:
     8 bit segments output for segement and decimal point values
 
-    Notes: Index segment[0] holds segment a value, segment[7] holds DP value
-
+    Notes: 
+    Index segment[0] holds segment a value, segment[7] holds DP value
+    The segment anodes are illuminated on low. (Active Low)
 */
 module Digit_Decoder(
     input [3:0] data,
@@ -24,17 +25,17 @@ module Digit_Decoder(
 );
     always@(data) begin
         case (data)
-            0:  segments = 8'h0x3F; 
-            1:  segments = 8'h0x06;
-            2:  segments = 8'h0x5B;
-            3:  segments = 8'h0x4F;
-            4:  segments = 8'h0x66;
-            5:  segments = 8'h0x6D;
-            6:  segments = 8'h0x7D;
-            7:  segments = 8'h0x07;
-            8:  segments = 8'h0x7F;
-            9:  segments = 8'h0x6F;
-            default: segments = 8'h0x00;
+            0:  segments = 8'h0xC0; //3F 
+            1:  segments = 8'h0xF9; //06
+            2:  segments = 8'h0xA4; //5B
+            3:  segments = 8'h0xB0; //4F
+            4:  segments = 8'h0x99; //66
+            5:  segments = 8'h0x92; //6D
+            6:  segments = 8'h0x82; //7D
+            7:  segments = 8'h0xF8; //07
+            8:  segments = 8'h0x80; //7F
+            9:  segments = 8'h0x90; //6F
+            default: segments = 8'h0x00; //FF
         endcase
     end
 endmodule
