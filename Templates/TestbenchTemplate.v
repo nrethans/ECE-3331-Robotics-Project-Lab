@@ -3,6 +3,7 @@ module testbench;
     wire ;
     <module> UTT(); 
     //Wavetable
+    reg clk=0;
     parameter PRD = ;
     always#(PRD/2) begin
         clk = ~clk; 
