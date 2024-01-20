@@ -32,14 +32,14 @@ module top(
     wire [7:0] decoder1,decoder2,decoder3,decoder4;
     wire [1:0] sync;
     wire slowedclk;
-    slowclk U00(clk,slowedclk);
-    Digit_Decoder U0(data1,decoder1);
-    Digit_Decoder U1(data2,decoder2);
-    Digit_Decoder U2(data3,decoder3);
-    Digit_Decoder U3(data4,decoder4);
-    SyncCounter U4(slowedclk,sync);
-    DisplayMUX U5(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
-    CathodeDecoder U6(sync,cathode);
+    Slowclk U0(clk,slowedclk);
+    Digit_Decoder U1(data1,decoder1);
+    Digit_Decoder U2(data2,decoder2);
+    Digit_Decoder U3(data3,decoder3);
+    Digit_Decoder U4(data4,decoder4);
+    SyncCounter U5(slowedclk,sync);
+    DisplayMUX U6(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
+    CathodeDecoder U7(sync,cathode);
 endmodule
 /*
 module testbench;
