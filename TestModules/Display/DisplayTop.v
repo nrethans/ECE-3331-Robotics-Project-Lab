@@ -18,27 +18,30 @@
 
     Notes:
 */
-`include "TestModules/Display/CathodeDecoder.v"
-`include "TestModules/Display/DigitDecoder.v"
-`include "TestModules/Display/DisplayMUX.v"
-`include "TestModules/Display/SyncCounter.v"
-module DisplayTop(
+//`include "TestModules/Display/CathodeDecoder.v"
+//`include "TestModules/Display/DigitDecoder.v"
+//`include "TestModules/Display/DisplayMUX.v"
+//`include "TestModules/Display/SyncCounter.v" 
+
+module top(
     input clk,
-    input [3:0] data1, data2, data3, data4,
+    /*input [3:0] data1, data2, data3, data4,*/
     output [3:0] cathode, output [7:0] segmentout
 );
+    reg [3:0] data1=1,data2=2,data3=3,data4=4;
     wire [7:0] decoder1,decoder2,decoder3,decoder4;
     wire [1:0] sync;
-
+    wire slowedclk;
+    slowclk U00(clk,slowedclk);
     Digit_Decoder U0(data1,decoder1);
     Digit_Decoder U1(data2,decoder2);
     Digit_Decoder U2(data3,decoder3);
     Digit_Decoder U3(data4,decoder4);
-    SyncCounter U4(clk,sync);
+    SyncCounter U4(slowedclk,sync);
     DisplayMUX U5(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
     CathodeDecoder U6(sync,cathode);
 endmodule
-
+/*
 module testbench;
     reg [3:0] data1=0,data2=1,data3=2,data4=3;
     wire [3:0] cathode;
@@ -64,4 +67,4 @@ module testbench;
         #(PRD*2);
         $finish;     
     end
-endmodule
+endmodule*/
