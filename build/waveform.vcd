@@ -1,5 +1,5 @@
 $date
-	Fri Jan 19 11:39:21 2024
+	Fri Jan 19 20:22:11 2024
 $end
 $version
 	Icarus Verilog
@@ -8,136 +8,280 @@ $timescale
 	1s
 $end
 $scope module testbench $end
-$var wire 8 ! segments [7:0] $end
-$var parameter 32 " PRD $end
-$var reg 1 # clk $end
-$var reg 4 $ data [3:0] $end
+$var wire 8 ! segmentout [7:0] $end
+$var wire 4 " cathode [3:0] $end
+$var parameter 32 # PRD $end
+$var reg 1 $ clk $end
+$var reg 4 % data1 [3:0] $end
+$var reg 4 & data2 [3:0] $end
+$var reg 4 ' data3 [3:0] $end
+$var reg 4 ( data4 [3:0] $end
 $scope module UUT $end
-$var wire 4 % data [3:0] $end
-$var reg 8 & segments [7:0] $end
+$var wire 1 $ clk $end
+$var wire 4 ) data1 [3:0] $end
+$var wire 4 * data2 [3:0] $end
+$var wire 4 + data3 [3:0] $end
+$var wire 4 , data4 [3:0] $end
+$var wire 2 - sync [1:0] $end
+$var wire 8 . segmentout [7:0] $end
+$var wire 8 / decoder4 [7:0] $end
+$var wire 8 0 decoder3 [7:0] $end
+$var wire 8 1 decoder2 [7:0] $end
+$var wire 8 2 decoder1 [7:0] $end
+$var wire 4 3 cathode [3:0] $end
+$scope module U0 $end
+$var wire 4 4 data [3:0] $end
+$var reg 8 5 segments [7:0] $end
 $upscope $end
-$scope begin $ivl_for_loop0 $end
-$var integer 32 ' i [31:0] $end
+$scope module U1 $end
+$var wire 4 6 data [3:0] $end
+$var reg 8 7 segments [7:0] $end
+$upscope $end
+$scope module U2 $end
+$var wire 4 8 data [3:0] $end
+$var reg 8 9 segments [7:0] $end
+$upscope $end
+$scope module U3 $end
+$var wire 4 : data [3:0] $end
+$var reg 8 ; segments [7:0] $end
+$upscope $end
+$scope module U4 $end
+$var wire 1 $ clk $end
+$var reg 2 < sync_count [1:0] $end
+$upscope $end
+$scope module U5 $end
+$var wire 8 = segment1 [7:0] $end
+$var wire 8 > segment2 [7:0] $end
+$var wire 8 ? segment3 [7:0] $end
+$var wire 8 @ segment4 [7:0] $end
+$var wire 2 A sync_count [1:0] $end
+$var reg 8 B segmentout [7:0] $end
+$upscope $end
+$scope module U6 $end
+$var wire 2 C sync_count [1:0] $end
+$var reg 4 D cathode [3:0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b10 "
+b100 #
 $end
 #0
 $dumpvars
-bx '
-b111111 &
-b0 %
-b0 $
-0#
-b111111 !
-$end
-#1
-1#
-#2
-0#
-b0 '
-#3
-1#
-#4
-b110 !
-b110 &
-0#
-b1 $
-b1 %
-b1 '
-#5
-1#
-#6
-b1011011 !
-b1011011 &
-0#
-b10 $
-b10 %
+b1000 D
+b11 C
+b10110000 B
+b11 A
+b10110000 @
+b10100100 ?
+b11111001 >
+b11000000 =
+b11 <
+b10110000 ;
+b11 :
+b10100100 9
+b10 8
+b11111001 7
+b1 6
+b11000000 5
+b0 4
+b1000 3
+b11000000 2
+b11111001 1
+b10100100 0
+b10110000 /
+b10110000 .
+b11 -
+b11 ,
+b10 +
+b1 *
+b0 )
+b11 (
 b10 '
-#7
-1#
+b1 &
+b0 %
+0$
+b1000 "
+b10110000 !
+$end
+#2
+b1 "
+b1 3
+b1 D
+b11000000 !
+b11000000 .
+b11000000 B
+b0 -
+b0 <
+b0 A
+b0 C
+1$
+#4
+0$
+#6
+b10 "
+b10 3
+b10 D
+b11111001 !
+b11111001 .
+b11111001 B
+b1 -
+b1 <
+b1 A
+b1 C
+1$
 #8
-b1001111 !
-b1001111 &
-0#
-b11 $
-b11 %
-b11 '
-#9
-1#
+0$
 #10
-b1100110 !
-b1100110 &
-0#
-b100 $
-b100 %
-b100 '
-#11
-1#
+b100 "
+b100 3
+b100 D
+b10100100 !
+b10100100 .
+b10100100 B
+b10 -
+b10 <
+b10 A
+b10 C
+1$
 #12
-b1101101 !
-b1101101 &
-0#
-b101 $
-b101 %
-b101 '
-#13
-1#
+0$
 #14
-b1111101 !
-b1111101 &
-0#
-b110 $
-b110 %
-b110 '
-#15
-1#
+b1000 "
+b1000 3
+b1000 D
+b10110000 !
+b10110000 .
+b10110000 B
+b11 -
+b11 <
+b11 A
+b11 C
+1$
 #16
-b111 !
-b111 &
-0#
-b111 $
-b111 %
-b111 '
-#17
-1#
+b11111000 !
+b11111000 .
+b11111000 B
+b11111000 /
+b11111000 ;
+b11111000 @
+b10000010 0
+b10000010 9
+b10000010 ?
+b10010010 1
+b10010010 7
+b10010010 >
+b10011001 2
+b10011001 5
+b10011001 =
+0$
+b111 (
+b111 ,
+b111 :
+b110 '
+b110 +
+b110 8
+b101 &
+b101 *
+b101 6
+b100 %
+b100 )
+b100 4
 #18
-b1111111 !
-b1111111 &
-0#
-b1000 $
-b1000 %
-b1000 '
-#19
-1#
+b1 "
+b1 3
+b1 D
+b10011001 !
+b10011001 .
+b10011001 B
+b0 -
+b0 <
+b0 A
+b0 C
+1$
 #20
-b1101111 !
-b1101111 &
-0#
-b1001 $
-b1001 %
-b1001 '
-#21
-1#
+0$
 #22
-b0 !
-b0 &
-0#
-b1010 $
-b1010 %
-b1010 '
-#23
-1#
+b10 "
+b10 3
+b10 D
+b10010010 !
+b10010010 .
+b10010010 B
+b1 -
+b1 <
+b1 A
+b1 C
+1$
 #24
-0#
-b1011 $
-b1011 %
-b1011 '
-#25
-1#
+0$
 #26
-0#
-b1100 '
+b100 "
+b100 3
+b100 D
+b10000010 !
+b10000010 .
+b10000010 B
+b10 -
+b10 <
+b10 A
+b10 C
+1$
+#28
+0$
+#30
+b1000 "
+b1000 3
+b1000 D
+b11111000 !
+b11111000 .
+b11111000 B
+b11 -
+b11 <
+b11 A
+b11 C
+1$
+#32
+b10010000 1
+b10010000 7
+b10010000 >
+b10000000 2
+b10000000 5
+b10000000 =
+0$
+b1001 &
+b1001 *
+b1001 6
+b1000 %
+b1000 )
+b1000 4
+#34
+b1 "
+b1 3
+b1 D
+b10000000 !
+b10000000 .
+b10000000 B
+b0 -
+b0 <
+b0 A
+b0 C
+1$
+#36
+0$
+#38
+b10 "
+b10 3
+b10 D
+b10010000 !
+b10010000 .
+b10010000 B
+b1 -
+b1 <
+b1 A
+b1 C
+1$
+#40
+0$

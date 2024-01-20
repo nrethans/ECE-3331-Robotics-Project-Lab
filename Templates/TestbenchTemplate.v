@@ -1,7 +1,7 @@
 module testbench;
     reg ;
     wire ;
-    <module> UTT(); 
+    <module> UUT(); 
     //Wavetable
     reg clk=0;
     parameter PRD = ;
