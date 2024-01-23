@@ -20,7 +20,7 @@
         381.47hz/4 digits = 95.37hz rate per digit
         
 */
-module slowclk(
+module SlowClk(
     input clk_fast,
     output clk_slow);
     reg [18:0] count = 0;

@@ -16,13 +16,13 @@
     cathode, 4-bits
     segmentout, 8-bits
 
-    Notes:
+    Notes: DisplayTop for Vivado
 */
 //`include "TestModules/Display/CathodeDecoder.v"
 //`include "TestModules/Display/DigitDecoder.v"
 //`include "TestModules/Display/DisplayMUX.v"
 //`include "TestModules/Display/SyncCounter.v" 
-
+//`include "Testmodules/Display/SlowClk/SlowClk.v"
 module top(
     input clk,
     /*input [3:0] data1, data2, data3, data4,*/
@@ -32,7 +32,7 @@ module top(
     wire [7:0] decoder1,decoder2,decoder3,decoder4;
     wire [1:0] sync;
     wire slowedclk;
-    Slowclk U0(clk,slowedclk);
+    SlowClk U0(clk,slowedclk);
     Digit_Decoder U1(data1,decoder1);
     Digit_Decoder U2(data2,decoder2);
     Digit_Decoder U3(data3,decoder3);

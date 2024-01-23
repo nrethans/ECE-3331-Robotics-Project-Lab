@@ -20,21 +20,3 @@ module SyncCounter(input clk, output reg [1:0] sync_count= 2'b11); //2'b11
         sync_count=sync_count+1;
     end
 endmodule
-
-// module testbench;
-//     wire [1:0] sync_count;
-//     SyncCounter UTT(clk,sync_count); 
-//     //Wavetable
-//     reg clk=0;
-//     parameter PRD = 2;
-//     always#(PRD/2) begin
-//         clk = ~clk; 
-//     end
-//     initial begin
-//         $dumpfile("waveform.vcd");
-//         $dumpvars(0, testbench);
-//         #10;
-//         $finish;     
-//     end
-    
-// endmodule
