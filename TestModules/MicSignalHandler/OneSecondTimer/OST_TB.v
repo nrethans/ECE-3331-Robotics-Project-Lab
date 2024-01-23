@@ -11,7 +11,7 @@ module testbench;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-        #1100;
+        #1300;
         $finish;     
     end
 endmodule

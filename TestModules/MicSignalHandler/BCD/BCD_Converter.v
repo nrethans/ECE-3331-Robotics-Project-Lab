@@ -20,10 +20,10 @@
 module BCD_Converter(input [9:0] Hz, output reg [3:0] Thousands_Data, 
                     Hundreds_Data, Tens_Data, Ones_Data);
     reg [9:0] temp;
-    always@(*)begin
-        Thousands_Data = Hz/1000;
-        temp = Hz % 1000;
-        Hundreds_Data = temp/100;
+    always@(*)begin //Might have to use always@(clk)
+        Thousands_Data = Hz/1000; //Div truncates remainder
+        temp = Hz % 1000;         //modulus gives remainder of div
+        Hundreds_Data = temp/100; 
         temp = Hz % 100;
         Tens_Data = temp/10;
         Ones_Data = Hz % 10;

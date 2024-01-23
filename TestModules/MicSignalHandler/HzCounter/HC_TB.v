@@ -33,7 +33,7 @@ module testbench;
         JA1=1;
         #10;
         JA1=0;
-        #100;
+        #250;
         $finish;     
     end
 endmodule

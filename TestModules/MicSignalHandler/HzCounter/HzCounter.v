@@ -21,13 +21,11 @@
 
 module HzCounter(input clk,JA1,output reg [9:0] Hz=0);
     wire OneSecond;
-    reg [9:0] count = 0;
+    reg [9:0] count = 0;    //2^9 = 1024
     OneSecondTimer U0(clk,OneSecond);
     always@(posedge(JA1)) count<=count+1;
-
     always@(OneSecond)begin
         Hz=count;
         count=0;
     end
-    //assign Hz = (Onesecond)?(count):();
 endmodule
