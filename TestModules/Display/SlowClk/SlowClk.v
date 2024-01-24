@@ -12,13 +12,16 @@
         clk_fast
     Outputs:
         clk_slow
+
+
+
+/*
     Notes:
         Basys3 board internal clk = 100Mhz
         2^18 = 262,144
         100Mhz/262,144hz = 381.47hz
         4 digits
-        381.47hz/4 digits = 95.37hz rate per digit
-        
+        381.47hz/4 digits = 95.37hz rate per digit        
 */
 module SlowClk(
     input clk_fast,

@@ -22,11 +22,11 @@ module DisplayMUX(
 );
     always @(segment1,segment2,segment3,segment4,sync_count) begin
         case(sync_count)
-            0: segmentout = segment1;
-            1: segmentout = segment2;
-            2: segmentout = segment3;
-            3: segmentout = segment4;
-            default: segmentout = 1;
+            0: segmentout = segment1; //Sel segment 1
+            1: segmentout = segment2; //Sel segment 2
+            2: segmentout = segment3; //Sel segment 3
+            3: segmentout = segment4; //Sel segment 4
+            default: segmentout = 0;  
         endcase
     end
 endmodule
