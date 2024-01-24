@@ -13,10 +13,10 @@
     Outputs:
         sync_count - 2 bits
     Notes:
-
 */
-module SyncCounter(input clk, output reg [1:0] sync_count= 2'b11); //2'b11
+
+module SyncCounter(input clk, output reg [1:0] sync_count= 2'b00);
     always@(posedge clk)begin
-        sync_count=sync_count+1;
+        sync_count=sync_count+1; 
     end
 endmodule

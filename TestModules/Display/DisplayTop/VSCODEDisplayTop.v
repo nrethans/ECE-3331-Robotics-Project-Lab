@@ -22,13 +22,13 @@
 `include "TestModules/Display/DigitDecoder/DigitDecoder.v"
 `include "TestModules/Display/DisplayMUX/DisplayMUX.v"
 `include "TestModules/Display/SyncCounter/SyncCounter.v" 
-`include "Testmodules/Display/SlowClk/SlowClk.v"
+//`include "Testmodules/Display/SlowClk/SlowClk.v"
+
 module DisplayTop(
     input clk,
     input [3:0] Thousands_Data, Hundreds_Data, Tens_Data, Ones_Data,
     output [3:0] cathode, output [7:0] segmentout
 );
-    //reg [3:0] data1=0,data2=1,data3=2,data4=3;
     wire [7:0] decoder1,decoder2,decoder3,decoder4;
     wire [1:0] sync;
     //wire slowedclk;
@@ -37,16 +37,16 @@ module DisplayTop(
     Digit_Decoder U2(Hundreds_Data,decoder2);
     Digit_Decoder U3(Tens_Data,decoder3);
     Digit_Decoder U4(Ones_Data,decoder4);
-    SyncCounter U5(clk,sync);
+    SyncCounter U5(clk,sync); //slowedclk used on Basys3 board
     DisplayMUX U6(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
     CathodeDecoder U7(sync,cathode);
 endmodule
-/*
+
 module testbench;
-    reg [3:0] data1=0,data2=1,data3=2,data4=3;
+    reg [3:0] Thousands_Data=0, Hundreds_Data=1, Tens_Data=2, Ones_Data=3;
     wire [3:0] cathode;
     wire [7:0] segmentout;
-    DisplayTop UUT(clk,data1,data2,data3,data4,cathode,segmentout); 
+    DisplayTop UUT(clk, Thousands_Data, Hundreds_Data, Tens_Data, Ones_Data, cathode, segmentout); 
     //Wavetable
     reg clk=0;
     parameter PRD = 4;
@@ -57,14 +57,14 @@ module testbench;
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
         #(PRD*4);
-        data1 = 4'h4;
-        data2 = 4'h5;
-        data3 = 4'h6;
-        data4 = 4'h7;
+        Thousands_Data = 4'h4;
+        Hundreds_Data = 4'h5;
+        Tens_Data = 4'h6;
+        Ones_Data = 4'h7;
         #(PRD*4);
-        data1 = 4'h8;
-        data2 = 4'h9;
+        Thousands_Data = 4'h8;
+        Hundreds_Data = 4'h9;
         #(PRD*2);
         $finish;     
     end
-endmodule*/
+endmodule

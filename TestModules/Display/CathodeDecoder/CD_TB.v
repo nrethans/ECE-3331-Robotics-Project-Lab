@@ -1,4 +1,4 @@
-`include "TestModules/Display/CathodeDecoder.v"
+`include "TestModules/Display/CathodeDecoder/CathodeDecoder.v"
 
 module testbench;
     reg [1:0] sync_count=0;
