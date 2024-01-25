@@ -1,7 +1,7 @@
 `include "TestModules/MiniProjectTop.v"
 `include "Assert.v"
 module testbench;
-    reg JA1;
+    reg JA1=0;
     wire [3:0] cathodes;
     wire [7:0] anodes;
     reg clk = 0;
