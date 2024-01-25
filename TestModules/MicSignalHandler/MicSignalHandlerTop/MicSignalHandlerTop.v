@@ -18,7 +18,7 @@
     Notes:
 
 */
-`include "TestModules/MicSignalHandler/BCD/BCD_Converter.v"
+`include "TestModules/MicSignalHandler/BCD/BCD_Double_Dabble.v"
 `include "TestModules/MicSignalHandler/HzCounter/HzCounter.v"
 //`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
 
@@ -26,5 +26,5 @@ module MicSignalHandlerTop(input clk, JA1, output [3:0] Thousands_Data,
                                 Hundreds_Data, Tens_Data, Ones_Data);
     wire [9:0] Binary_Hz;
     HzCounter Unit0(clk,JA1,Binary_Hz);
-    BCD_Converter Unit1(Binary_Hz,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
+    BCD_Double_Dabble Unit1(Binary_Hz,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
 endmodule
