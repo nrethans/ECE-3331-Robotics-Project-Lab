@@ -19,6 +19,6 @@ module testbench;
         end      
         #154; 
         #300;
-        $finish;     
+        $finish;  
     end
 endmodule
