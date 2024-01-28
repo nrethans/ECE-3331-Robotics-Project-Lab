@@ -15,7 +15,7 @@
 
     Notes:
 */
-
+(* DONT_TOUCH = "yes" *)
 module DisplayMUX(
     input [7:0] segment1, segment2, segment3, segment4,
     input [1:0] sync_count, output reg [7:0] segmentout=0

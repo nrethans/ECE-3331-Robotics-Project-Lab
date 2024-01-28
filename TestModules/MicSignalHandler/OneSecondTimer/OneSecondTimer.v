@@ -15,11 +15,11 @@
     Notes:condition ? value_if_true : value_if_false
 
 */
-
+(* DONT_TOUCH = "yes" *)
 module OneSecondTimer(input clk,output reg OneSecond=0);
     reg [25:0] count=0;         //2^26 = 67,108,864 ~= 50,000,000
     always@(posedge(clk)) begin
-        if(count==200)begin     //!Board count == 50_000_000! 
+        if(count==50000000)begin     //!Board count == 50_000_000! 
             count=0;            //Use half of period (100E6) since using posedge
             OneSecond=~OneSecond;
             count = count + 1;

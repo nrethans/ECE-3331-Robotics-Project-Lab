@@ -14,16 +14,16 @@
     Outputs:
             Display cathodes
             Display anodes
-
     Notes:
 
 */
 
-`include "TestModules/Display/DisplayTop/VSCODEDisplayTop.v"
-`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MicSignalHandlerTop.v"
-
-module MiniProjectTop(input clk, JA1, output [3:0] cathodes, output [7:0] anodes);
+//`include "TestModules/Display/DisplayTop/VSCODEDisplayTop.v"
+//`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MicSignalHandlerTop.v"
+(* DONT_TOUCH = "yes" *)
+module top(input clk, JA1, output led, output [3:0] cathode, output [7:0] anode);
     wire [3:0] Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data;
-    MicSignalHandlerTop Unit0(clk,JA1,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
-    DisplayTop Unit1(clk,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data,cathodes,anodes);
+    assign led = JA1;
+    MicSignalHandler Unit1(clk,JA1,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
+    Display Unit2(clk,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data,cathode,anode);
 endmodule

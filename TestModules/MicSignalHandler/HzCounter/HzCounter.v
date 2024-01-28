@@ -16,16 +16,12 @@
     Notes:
 
 */
-`timescale 1s/1s
-`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
+//`timescale 1s/1s
+//`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
+(* DONT_TOUCH = "yes" *)
 
-module HzCounter(input clk,JA1,output reg [9:0] Hz=0);
-    wire OneSecond;
-    reg [9:0] count = 0;    //2^9 = 1024
-    OneSecondTimer U0(clk,OneSecond);
-    always@(posedge(JA1)) count<=count+1;
+module HzCounter(input OneSecond, input [9:0] JA1COUNTER, output reg [9:0] Hz=0);
     always@(OneSecond)begin
-        Hz=count;
-        count=0;
+        Hz=JA1COUNTER;
     end
 endmodule

@@ -12,9 +12,6 @@
         clk_fast
     Outputs:
         clk_slow
-
-
-
 /*
     Notes:
         Basys3 board internal clk = 100Mhz
@@ -23,6 +20,7 @@
         4 digits
         381.47hz/4 digits = 95.37hz rate per digit        
 */
+(* DONT_TOUCH = "yes" *)
 module SlowClk(
     input clk_fast,
     output clk_slow);

@@ -23,9 +23,10 @@
 //`include "TestModules/Display/DisplayMUX.v"
 //`include "TestModules/Display/SyncCounter.v" 
 //`include "Testmodules/Display/SlowClk/SlowClk.v"
-module top(
-    input clk,
-    /*input [3:0] data1, data2, data3, data4,*/
+(* DONT_TOUCH = "yes" *)
+module Display(
+    input clk, 
+    input [3:0] Thousands_Data, Hundreds_Data, Tens_Data, Ones_Data,
     output [3:0] cathode, output [7:0] segmentout
 );
     reg [3:0] data1=1,data2=2,data3=3,data4=4;
@@ -33,10 +34,10 @@ module top(
     wire [1:0] sync;
     wire slowedclk;
     SlowClk U0(clk,slowedclk);
-    Digit_Decoder U1(data1,decoder1);
-    Digit_Decoder U2(data2,decoder2);
-    Digit_Decoder U3(data3,decoder3);
-    Digit_Decoder U4(data4,decoder4);
+    Digit_Decoder U1(Thousands_Data,decoder1);
+    Digit_Decoder U2(Hundreds_Data,decoder2);
+    Digit_Decoder U3(Tens_Data,decoder3);
+    Digit_Decoder U4(Ones_Data,decoder4);
     SyncCounter U5(slowedclk,sync);
     DisplayMUX U6(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
     CathodeDecoder U7(sync,cathode);

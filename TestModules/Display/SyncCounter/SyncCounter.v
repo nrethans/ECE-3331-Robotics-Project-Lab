@@ -14,7 +14,7 @@
         sync_count - 2 bits
     Notes:
 */
-
+(* DONT_TOUCH = "yes" *)
 module SyncCounter(input clk, output reg [1:0] sync_count= 2'b00);
     always@(posedge clk)begin
         sync_count=sync_count+1; 

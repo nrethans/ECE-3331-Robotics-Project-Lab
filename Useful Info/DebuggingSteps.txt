@@ -1,0 +1,3 @@
+When debugging in vivado:
+1. Check if the synthesis and implementation are include all modules and connections properly.  
+    - Vivado likes to remove and optimize away modules and net connections.

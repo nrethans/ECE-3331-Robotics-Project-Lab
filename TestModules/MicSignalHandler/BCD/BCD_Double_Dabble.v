@@ -16,7 +16,7 @@
 
     Notes:
 */
-
+(* DONT_TOUCH = "yes" *)
 module BCD_Double_Dabble(input [9:0] Hz, output reg [3:0] Thousands_Data, Hundreds_Data, Tens_Data, Ones_Data);
     reg [25:0] bin=0;
     initial begin
