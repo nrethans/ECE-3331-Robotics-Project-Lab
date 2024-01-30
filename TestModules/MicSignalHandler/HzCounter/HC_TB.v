@@ -1,9 +1,9 @@
 `include "TestModules/MicSignalHandler/HzCounter/HzCounter.v"
 
 module testbench;
-    reg JA1=0;
+    reg JA1=0,OneSecond=0;
     wire [9:0] Hz;
-    HzCounter UUT(clk,JA1,Hz); 
+    HzCounter UUT(JA1,OneSecond,clk,Hz); 
     //Wavetable
     reg clk=0;
     always begin
@@ -12,28 +12,13 @@ module testbench;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-        #100;
         #10;
-        JA1=1;
+        for(integer i=0;i<30;i=i+1)begin
+            JA1=~JA1; #4;
+        end
         #10;
-        JA1=0;
+        OneSecond=1;
         #10;
-        JA1=1;
-        #10;
-        JA1=0;
-        #10;
-        JA1=1;
-        #10;
-        JA1=0;
-        #10;
-        JA1=1;
-        #10;
-        JA1=0;
-        #10;
-        JA1=1;
-        #10;
-        JA1=0;
-        #250;
         $finish;     
     end
 endmodule

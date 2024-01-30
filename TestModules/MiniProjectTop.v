@@ -18,12 +18,33 @@
 
 */
 
-//`include "TestModules/Display/DisplayTop/VSCODEDisplayTop.v"
-//`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MicSignalHandlerTop.v"
+`include "TestModules/Display/DisplayTop/VSCODEDisplayTop.v"
+`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MSH_VSCODE.v"
 (* DONT_TOUCH = "yes" *)
-module top(input clk, JA1, output led, output [3:0] cathode, output [7:0] anode);
+module MiniProjectTop(input clk, JA1, output [3:0] cathode, output [7:0] anode);
     wire [3:0] Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data;
-    assign led = JA1;
     MicSignalHandler Unit1(clk,JA1,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
-    Display Unit2(clk,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data,cathode,anode);
+    DisplayTop Unit2(clk,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data,cathode,anode);
+endmodule
+
+module testbench;
+    reg JA1=0;
+    wire [3:0] cathodes;
+    wire [7:0] anodes;
+    reg clk = 0;
+    always begin
+        clk=~clk; #1;
+    end
+    MiniProjectTop UUT(clk, JA1, cathodes, anodes);
+    initial begin
+        $dumpfile("waveform.vcd");
+        $dumpvars(0, testbench);
+        //#1000 window for each "second"
+        #10;
+        for(integer i = 0; i<246; i=i+1) begin 
+            JA1 = ~JA1; #4;                 
+        end      
+        #16;
+        $finish;  
+    end
 endmodule

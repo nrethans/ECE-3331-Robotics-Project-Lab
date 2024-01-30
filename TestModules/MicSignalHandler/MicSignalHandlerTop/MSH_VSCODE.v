@@ -18,17 +18,28 @@
     Notes:
 
 */
+module OneSecondTimer(input clk,output reg OneSecond=0);
+    reg [25:0] count = 0;         //2^26 = 67,108,864 ~= 50,000,000
+    always@(posedge(clk)) begin
+        if(count==500)begin     //!Board count == 50_000_000! Divide again because Hz Counter is only Posedge = 25_000 
+            count=0;            //Use half of period (100E6) since using posedge
+            OneSecond=~OneSecond;
+            count = count + 1;
+        end 
+        else begin
+            count = count + 1;
+        end
+    end
+endmodule
 `include "TestModules/MicSignalHandler/BCD/BCD_Double_Dabble.v"
 `include "TestModules/MicSignalHandler/HzCounter/HzCounter.v"
-`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
-(* DONT_TOUCH = "yes" *)
+//`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
+//(* DONT_TOUCH = "yes" *)
 module MicSignalHandler(input clk, JA1, output [3:0] Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
     wire [9:0] Binary_Hz;
-    wire [9:0] JA1COUNT;
     wire OneSecond,OneKiloHert,clr;
     OneSecondTimer Unit1(clk,OneSecond);
-    OneKilohertTimer Unit4(clk,OneKiloHert);
-    JA1Counter Unit2(JA1,clk,clr,OneKiloHert,JA1COUNT);
-    HzCounter Unit3(OneSecond,JA1COUNT,Binary_Hz,clr);
-    BCD_Double_Dabble Unit1(Binary_Hz,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
+    HzCounter Unit2(JA1,OneSecond,clk,Binary_Hz);
+    BCD_Double_Dabble Unit3(Binary_Hz,Thousands_Data,Hundreds_Data,Tens_Data,Ones_Data);
 endmodule
+
