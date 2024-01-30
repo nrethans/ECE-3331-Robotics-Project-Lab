@@ -20,8 +20,9 @@
 //`include "TestModules/MicSignalHandler/OneSecondTimer/OneSecondTimer.v"
 (* DONT_TOUCH = "yes" *)
 
-module HzCounter(input OneSecond, input [9:0] JA1COUNTER, output reg [9:0] Hz=0);
-    always@(OneSecond)begin
-        Hz=JA1COUNTER;
+module HzCounter(input OneSecond, input [9:0] JA1COUNT, output reg [9:0] Hz=0, output reg clr=0);
+    always@(posedge(OneSecond))begin
+        Hz=JA1COUNT;
+        clr=~clr;
     end
 endmodule

@@ -1,4 +1,4 @@
-`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MicSignalHandlerTop.v"
+`include "TestModules/MicSignalHandler/MicSignalHandlerTop/MSH_VSCODE.v"
 
 module testbench;
     reg JA1=0;
