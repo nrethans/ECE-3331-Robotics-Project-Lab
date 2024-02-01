@@ -14,11 +14,18 @@ module testbench;
         $dumpvars(0, testbench);
         #10;
         for(integer i=0;i<30;i=i+1)begin
-            JA1=~JA1; #4;
+            JA1=~JA1; #5;
         end
         #10;
         OneSecond=1;
         #10;
+        JA1=1; #8;
+        JA1=0; #4;
+        JA1=1; #4;
+        JA1=0; #2;
+        #20;
+        OneSecond=0;
+        #20;
         $finish;     
     end
 endmodule

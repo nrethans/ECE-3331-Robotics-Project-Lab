@@ -21,24 +21,19 @@
 (* DONT_TOUCH = "yes" *)
 
 module HzCounter(input JA1, OneSecond, clk, output reg [9:0] Hz=0);
-    reg LiveSignal = 0,PrevSecond=0;
-    always @(posedge(clk)) LiveSignal<=JA1;
+    reg [1:0] EdgeTest = 0;
+    reg PrevSecond = 0;
     reg [9:0] temp=0;
     always @(posedge (clk))begin
+        EdgeTest[0]=JA1;
         if(OneSecond!=PrevSecond)begin
             Hz=temp;
             temp <= 0;
             PrevSecond <= OneSecond;
         end
-        else if(~LiveSignal&JA1) temp <= temp+1;
+        else if(!EdgeTest[0]&&EdgeTest[1]) begin
+            temp = temp+1;
+        end
+        EdgeTest[1]=EdgeTest[0];
     end
 endmodule
-
-/*
-    Combine the HzCounter and JA1Counter modules. The kHz if statement in the JA1Counter should just be the OneSecond Signal instead of kilohertz
-    since the else if statement handles the high sampling rate problem. 
-
-    Then lower the OneSecond timer and run the Signal Handler TB and Miniproject Top module
-
-    Then run in vivado. 
-*/
