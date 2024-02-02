@@ -19,6 +19,7 @@
     Index segment[0] holds segment a value, segment[7] holds DP value
     The segment anodes are illuminated on low. (Active Low)
 */
+(* DONT_TOUCH = "yes" *)
 module Digit_Decoder(
     input [3:0] data,
     output reg [7:0] segments);

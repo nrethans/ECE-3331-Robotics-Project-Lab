@@ -13,7 +13,7 @@
 
     Notes: cathodes are active low
 */
-
+(* DONT_TOUCH = "yes" *)
 module CathodeDecoder(input [1:0] sync_count, output reg [3:0] cathode=2'b00);
     always@(sync_count)begin
         case (sync_count)

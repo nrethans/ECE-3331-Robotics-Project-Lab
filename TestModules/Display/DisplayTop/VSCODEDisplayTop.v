@@ -41,7 +41,7 @@ module DisplayTop(
     DisplayMUX U6(decoder1,decoder2,decoder3,decoder4,sync,segmentout);
     CathodeDecoder U7(sync,cathode);
 endmodule
-
+/*
 module testbench;
     reg [3:0] Thousands_Data=0, Hundreds_Data=1, Tens_Data=2, Ones_Data=3;
     wire [3:0] cathode;
@@ -68,3 +68,4 @@ module testbench;
         $finish;     
     end
 endmodule
+*/
