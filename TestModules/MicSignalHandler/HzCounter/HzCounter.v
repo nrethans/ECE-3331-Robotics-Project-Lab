@@ -27,7 +27,7 @@ module HzCounter(input JA1, OneSecond, clk, output reg [9:0] Hz=0);
     always @(posedge (clk))begin
         EdgeTest[0]=JA1;
         if(OneSecond!=PrevSecond)begin
-            Hz=temp;
+            Hz=temp*4; //multiply by 4 on board
             temp <= 0;
             PrevSecond <= OneSecond;
         end
