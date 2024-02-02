@@ -24,18 +24,18 @@ module Digit_Decoder(
     input [3:0] data,
     output reg [7:0] segments);
     always@(data) begin
-        case (data)                 //Using inverse of since display anodes are active low 
-            0:  segments = 8'h0xC0; //3F 
-            1:  segments = 8'h0xF9; //06
-            2:  segments = 8'h0xA4; //5B
-            3:  segments = 8'h0xB0; //4F
-            4:  segments = 8'h0x99; //66
-            5:  segments = 8'h0x92; //6D
-            6:  segments = 8'h0x82; //7D
-            7:  segments = 8'h0xF8; //07
-            8:  segments = 8'h0x80; //7F
-            9:  segments = 8'h0x90; //6F
-            default: segments = 8'h0x00; //FF default all off
+        case (data) //Using inverse of since display anodes are active low 
+            0:  segments = 8'b11000000; //C0 
+            1:  segments = 8'b11111001; //F9
+            2:  segments = 8'b10100100; //A4
+            3:  segments = 8'b10110000; //B0
+            4:  segments = 8'b10011001; //99
+            5:  segments = 8'b10010010; //92
+            6:  segments = 8'b10000010; //82
+            7:  segments = 8'b11111000; //F8
+            8:  segments = 8'b10000000; //80
+            9:  segments = 8'b10010000; //90
+            default: segments = 8'b00000000; //00 default all off
         endcase
     end
 endmodule
