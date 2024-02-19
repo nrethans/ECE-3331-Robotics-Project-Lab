@@ -16,14 +16,20 @@
     Notes: 
 
 */
-module DriveTrainControl(
-    input BTN_FWD, BTN_BKWD, BTN_LEFT, BTN_RIGHT,
-    output reg [1:0] Left_Track_Duty = 2'b00, Right_Track_Duty=2'b00
-);
-    case({BTN_FWD,BTN_BKWD,BTN_LEFT,BTN_RIGHT}) begin
-        4'b0000: {Left_Track_Duty,Right_Track_Duty} = 4'b0000;
-        4'b0001: {Left_Track_Duty,Right_Track_Duty} = 4'b0010;
-        4'b0010: {Left_Track_Duty,Right_Track_Duty} = 4'b0100;
-        4'b0100: {Left_Track_Duty,Right_Track_Duty} = //backwards input?, check L298 driver datasheet
-    end
+module DriveTrainTop(
+    output IN1,IN2,IN3,IN4, output reg EnableA=1'b0,EnableB=1'b0,
+    output [7:0] led, input [5:0] sw, input SNSA, SNSB, clk);
+    assign led[0] = sw[0];
+    assign led[1] = sw[1];
+    assign led[2] = sw[2];
+    assign led[3] = sw[3];
+    assign led[4] = sw[4];
+    assign led[5] = sw[5];
+    assign led[6] = SNSA;
+    assign led[7] = SNSB;
+
+    assign IN1 = sw[2];
+    assign IN2 = sw[3];
+    assign IN3 = sw[4];
+    assign IN4 = sw[5];
 endmodule
