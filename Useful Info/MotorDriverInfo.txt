@@ -1,0 +1,7 @@
+Motor Driver Pinout:
+EnableA:Enables OUTA 
+EnableB:Enables OUTB
+IN1: Drives OUTA Side forwards
+IN2: Drives OUTA Side backwards
+IN3: Drives OUTB Side backwards
+IN4: Drives OUTB Side forwards
