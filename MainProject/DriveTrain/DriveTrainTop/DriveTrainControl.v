@@ -17,19 +17,40 @@
 
 */
 module DriveTrainTop(
-    output IN1,IN2,IN3,IN4, output reg EnableA=1'b0,EnableB=1'b0,
-    output [7:0] led, input [5:0] sw, input SNSA, SNSB, clk);
-    assign led[0] = sw[0];
-    assign led[1] = sw[1];
-    assign led[2] = sw[2];
-    assign led[3] = sw[3];
-    assign led[4] = sw[4];
-    assign led[5] = sw[5];
-    assign led[6] = SNSA;
-    assign led[7] = SNSB;
+    output IN1,IN2,IN3,IN4, output EnableA,EnableB,
+    /*output [7:0] led,*/ input [5:0] sw, input DisableA, DisableB, clk);
+    // assign led[0] = sw[0];//PWM A_SEL
+    // assign led[1] = sw[1];//PWM B_SEL
+    // assign led[2] = sw[2];//IN1
+    // assign led[3] = sw[3];//IN2
+    // assign led[4] = sw[4];//IN3
+    // assign led[5] = sw[5];//IN4
+    // assign led[6] = DisableA;
+    // assign led[7] = DisableB;
+    wire Enable;
+    assign Enable = ~(DisableA|DisableB);
+    assign EnableA = Enable;
+    assign EnableB = Enable;
+    // assign IN1 = sw[2];
+    // assign IN2 = sw[3];
+    // assign IN3 = sw[4];
+    // assign IN4 = sw[5];
+endmodule
 
-    assign IN1 = sw[2];
-    assign IN2 = sw[3];
-    assign IN3 = sw[4];
-    assign IN4 = sw[5];
+module testbench;
+    reg DisableA=0,DisableB=0;
+    wire EnableA,EnableB;
+    DriveTrainTop UUT(EnableA,EnableB,DisableA,DisableB); 
+    // //Wavetable
+    // reg clk=0;
+    // parameter PRD = ;
+    // always#(PRD/2) begin
+    //     clk = ~clk; 
+    // end
+    initial begin
+        $dumpfile("waveform.vcd");
+        $dumpvars(0, testbench);
+            #5; DisableA=1; #5; DisableB=1; #5; DisableA=0; #5; DisableB=0; #5;
+        $finish;     
+    end
 endmodule
