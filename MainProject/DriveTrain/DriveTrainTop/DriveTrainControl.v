@@ -27,10 +27,7 @@ module DriveTrainTop(
     // assign led[5] = sw[5];//IN4
     // assign led[6] = DisableA;
     // assign led[7] = DisableB;
-    wire Enable;
-    assign Enable = ~(DisableA|DisableB);
-    assign EnableA = Enable;
-    assign EnableB = Enable;
+    
     // assign IN1 = sw[2];
     // assign IN2 = sw[3];
     // assign IN3 = sw[4];

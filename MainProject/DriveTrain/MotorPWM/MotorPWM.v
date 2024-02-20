@@ -17,33 +17,44 @@
         100Mhz/25KHz = 4000
         logbase2(4000) =~ 12
 */
-
-module MotorPWM(input clk, input sw[1:0], output PulseSignalA, PulseSignalB);
+module MotorPWM(input clk, input sw0,sw1, output reg PulseSignalA=1'b0, PulseSignalB=1'b0);
     reg [11:0] count = 12'b000000000000;
     always @(posedge clk) begin
-        if(count == 12'b111110100000)begin
-            count <= 12'b000000000000;
+        if(count >= 12'b011111010000)begin //Limit to 2000 since posedge instead of 4000
+            count = 12'b000000000000;
+            count = count + 1'b1;
+        end
+        else begin
             count <= count + 1'b1;
-        end
-        else count <= count + 1'b1;
-    end  
-    case({sw[1],sw[0]}) //sw[1] = B side, sw[0] = A side, sw low = 50% duty, sw high = 100% duty
-        2'b00: begin
-            if(count<=12'b00011111010000) {PulseSignalA,PulseSignalB} <= 2'b11; // counting to 2000
-            else {PulseSignalA,PulseSignalB} <= 2'b00;
-        end
-        2'b01: begin
-            if(count<=12'b00011111010000) PulseSignalB <= 1'b1;
-            else PulseSignalB = 1'b0;
-            PulseSignalA=1'b1;
-        end
-        
-        2'b10: begin
-            if(count<=12'b00011111010000) PulseSignalA <= 1'b1;
-            else PulseSignalA = 1'b0;
-            PulseSignalB=1'b1;
-        end
-        2'b11: {PulseSignalA,PulseSignalB} = 2'b11;
-        default: {PulseSignalA,PulseSignalA} = 2'b00;
-    endcase
+        end 
+        case({sw1,sw0}) //sw1 = B side, sw0 = A side, sw low = 50% duty, sw high = 100% duty
+            2'b00: begin
+                if(count<=12'b001111101000) begin
+                    {PulseSignalA,PulseSignalB} <= 2'b11; 
+                end
+                else {PulseSignalA,PulseSignalB} <= 2'b00;
+            end
+            2'b01: begin
+                if(count<=12'b001111101000) begin
+                    PulseSignalB <= 1'b1;
+                end
+                else begin
+                    PulseSignalB = 1'b0;
+                end
+                PulseSignalA=1'b1;
+            end
+            
+            2'b10: begin
+                if(count<=12'b001111101000) begin
+                    PulseSignalA <= 1'b1;
+                end
+                else begin
+                    PulseSignalA = 1'b0;
+                end
+                PulseSignalB=1'b1;
+            end
+            2'b11: {PulseSignalA,PulseSignalB} = 2'b11;
+            default: {PulseSignalA,PulseSignalA} = 2'b00;
+        endcase
+    end
 endmodule 
