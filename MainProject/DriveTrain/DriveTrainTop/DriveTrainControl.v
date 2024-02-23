@@ -14,40 +14,26 @@
     Outputs: Left_Track_SEL, Right_Track_SEL
 
     Notes: 
-
 */
+`include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/MotorEncoder/MotorEncoder.v"
+`include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/MotorPWM/MotorPWM.v"
+`include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/DisableHandler/DisableHandler.v"
+
 module DriveTrainTop(
-    output IN1,IN2,IN3,IN4, output EnableA,EnableB,
-    /*output [7:0] led,*/ input [5:0] sw, input DisableA, DisableB, clk);
-    // assign led[0] = sw[0];//PWM A_SEL
-    // assign led[1] = sw[1];//PWM B_SEL
-    // assign led[2] = sw[2];//IN1
-    // assign led[3] = sw[3];//IN2
-    // assign led[4] = sw[4];//IN3
-    // assign led[5] = sw[5];//IN4
-    // assign led[6] = DisableA;
-    // assign led[7] = DisableB;
-    
-    // assign IN1 = sw[2];
-    // assign IN2 = sw[3];
-    // assign IN3 = sw[4];
-    // assign IN4 = sw[5];
+    output [5:2] Serial_Out, output [1:0] Serial_Out_Enable, output Pause,
+    output [7:0] led, input [5:0] sw, input [1:0] Serial_In_Disable, input clk);
+    assign led[0] = sw[0];
+    assign led[1] = sw[1];
+    assign led[2] = sw[2];
+    assign led[3] = sw[3];
+    assign led[4] = sw[4];
+    assign led[5] = sw[5];
+    assign led[6] = Serial_In_Disable[0];
+    assign led[7] = Serial_In_Disable[1];
+    wire [1:0] Internal_PWM_Signal; //[1] A side, [0] B side 
+    DisableHandler DisableUnit(Serial_In_Disable,clk,Serial_Out_Enable,Pause);
+    MotorPWM PwmUnit(clk,sw[1:0],Internal_PWM_Signal[1],Internal_PWM_Signal[0]);
+    PWMEncoder PWMEncoderUnit1(sw[2],sw[3],Internal_PWM_Signal[1],Serial_Out[2],Serial_Out[3]); //A side direction control
+    PWMEncoder PWMEncoderUnit2(sw[4],sw[5],Internal_PWM_Signal[0],Serial_Out[4],Serial_Out[5]); //B side direction control
 endmodule
 
-module testbench;
-    reg DisableA=0,DisableB=0;
-    wire EnableA,EnableB;
-    DriveTrainTop UUT(EnableA,EnableB,DisableA,DisableB); 
-    // //Wavetable
-    // reg clk=0;
-    // parameter PRD = ;
-    // always#(PRD/2) begin
-    //     clk = ~clk; 
-    // end
-    initial begin
-        $dumpfile("waveform.vcd");
-        $dumpvars(0, testbench);
-            #5; DisableA=1; #5; DisableB=1; #5; DisableA=0; #5; DisableB=0; #5;
-        $finish;     
-    end
-endmodule
