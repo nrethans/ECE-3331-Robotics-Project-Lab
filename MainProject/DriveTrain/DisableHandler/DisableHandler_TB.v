@@ -1,16 +1,17 @@
 `include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/DisableHandler/DisableHandler.v"
 module testbench;
-    reg DisableA=0, DisableB=0;
-    wire EnableA, EnableB;
-    DisableHandler UUT(DisableA,DisableB,EnableA, EnableB); 
+    reg [1:0] Disable = 2'b00;
+    wire [1:0] Enable; 
+    DisableHandler UUT(Disable,clk,Enable,Pause); 
     //Wavetable
+    reg clk = 0; 
+    always begin
+        clk = ~clk; #1;
+    end 
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-            #5;
-            {DisableA,DisableB} = 2'b01; #5;
-            {DisableA,DisableB} = 2'b10; #5;
-            {DisableA,DisableB} = 2'b11; #5;
+            #1000; Disable = 1; #1000; Disable = 0; #15000; Disable = 2; #1000; Disable = 0; #15000;
         $finish;     
     end
 endmodule

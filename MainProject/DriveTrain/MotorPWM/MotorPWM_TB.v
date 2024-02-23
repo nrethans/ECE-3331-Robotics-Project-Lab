@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 `include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/MotorPWM/MotorPWM.v"
 module testbench;
     reg sw1=0,sw0=0;
@@ -11,9 +12,10 @@ module testbench;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-            #4000;
-            sw1=1; #4000;
-            sw0=1; #4000;
+            #25000;
+            sw1=1; #25000; sw1=0;
+            sw0=1; #25000; sw0=0; 
+            #25000;
         $finish;     
     end
 endmodule

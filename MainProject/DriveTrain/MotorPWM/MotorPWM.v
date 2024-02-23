@@ -17,40 +17,31 @@
         100Mhz/25KHz = 4000
         logbase2(4000) =~ 12
 */
-module MotorPWM(input clk, input sw0,sw1, output reg PulseSignalA=1'b0, PulseSignalB=1'b0);
-    reg [11:0] count = 12'b000000000000;
+module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignalA=1'b0, PulseSignalB=1'b0);
+    reg [13:0] count =   14'b0000000000000;
+    parameter HalfDuty = 14'b01100001101010;
     always @(posedge clk) begin
-        if(count >= 12'b011111010000)begin //Limit to 2000 since posedge instead of 4000
-            count = 12'b000000000000;
+        if(count >= 14'b11000011010100)begin //Limit to 12500 since posedge instead of 25000
+            count = 14'b00000000000000;
             count = count + 1'b1;
         end
         else begin
             count <= count + 1'b1;
         end 
-        case({sw1,sw0}) //sw1 = B side, sw0 = A side, sw low = 50% duty, sw high = 100% duty
+        case({DutyCycle[1],DutyCycle[0]}) //DutyCycle[1] = B side, DutyCycle[0] = A side, low = 50% duty, high = 100% duty
             2'b00: begin
-                if(count<=12'b001111101000) begin
-                    {PulseSignalA,PulseSignalB} <= 2'b11; 
-                end
+                if(count<=HalfDuty) {PulseSignalA,PulseSignalB} <= 2'b11; 
                 else {PulseSignalA,PulseSignalB} <= 2'b00;
             end
             2'b01: begin
-                if(count<=12'b001111101000) begin
-                    PulseSignalB <= 1'b1;
-                end
-                else begin
-                    PulseSignalB = 1'b0;
-                end
+                if(count<=HalfDuty) PulseSignalB <= 1'b1;
+                else PulseSignalB = 1'b0;
                 PulseSignalA=1'b1;
             end
             
             2'b10: begin
-                if(count<=12'b001111101000) begin
-                    PulseSignalA <= 1'b1;
-                end
-                else begin
-                    PulseSignalA = 1'b0;
-                end
+                if(count<=HalfDuty) PulseSignalA <= 1'b1;
+                else PulseSignalA = 1'b0;
                 PulseSignalB=1'b1;
             end
             2'b11: {PulseSignalA,PulseSignalB} = 2'b11;

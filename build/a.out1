@@ -1,13 +1,6 @@
-**** module/scope: testbench
-     Flip-Flops   : 0
-     Logic Gates  : 0
-     LOG[13]: 1 unaccounted
-     LOG[14]: 1 unaccounted
-**** module/scope: testbench.UUT
+**** module/scope: PWMEncoder
      Flip-Flops   : 0
      Logic Gates  : 2
 **** TOTALS
      Flip-Flops   : 0
      Logic Gates  : 2
-     LOG[13]: 1 unaccounted
-     LOG[14]: 1 unaccounted
