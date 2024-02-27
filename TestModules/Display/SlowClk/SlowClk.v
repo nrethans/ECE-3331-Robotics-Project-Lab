@@ -24,7 +24,7 @@
 module SlowClk(
     input clk_fast,
     output clk_slow);
-    reg [18:0] count = 0;
+    reg [17:0] count = 0;
     always @ (posedge(clk_fast))count <= count+1;
-    assign clk_slow = count[18];
+    assign clk_slow = count[17];
 endmodule
