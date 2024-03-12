@@ -1,4 +1,5 @@
 `include "/Users/nicholasrethans/Documents/GitHub/ECE-3331-Robotics-Project-Lab/MainProject/DriveTrain/DisableHandler/DisableHandler.v"
+`timescale 1ns/1ns
 module testbench;
     reg [1:0] Disable = 2'b00;
     wire [1:0] Enable; 
