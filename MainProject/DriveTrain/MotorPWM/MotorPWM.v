@@ -12,10 +12,8 @@
 
     Outputs:
 
-    Notes:
-        Commutation frequency range is 23 - 40 KHz, Typical is 25Khz
-        100Mhz/25KHz = 4000
-        logbase2(4000) =~ 12
+    Notes: This PWM frequency is 8khz 
+       
 */
 module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignalA=1'b0, PulseSignalB=1'b0);
     reg [13:0] count = 14'b0000000000000;
@@ -38,7 +36,6 @@ module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignalA=1'b0, 
                 else PulseSignalB = 1'b0;
                 PulseSignalA=1'b1;
             end
-            
             2'b10: begin
                 if(count<=HalfDuty) PulseSignalA <= 1'b1;
                 else PulseSignalA = 1'b0;

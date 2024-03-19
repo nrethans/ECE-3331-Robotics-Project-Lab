@@ -10,7 +10,7 @@ module testbench;
         clk = ~clk; #1;
     end
     initial begin
-        $dumpfile("waveform.vcd");
+        $dumpfile("wavefor.vcd");
         $dumpvars(0, testbench);
         #10;
         for(integer i=0;i<30;i=i+1)begin

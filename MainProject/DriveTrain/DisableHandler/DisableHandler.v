@@ -1,4 +1,5 @@
 
+
 module DisableHandler(input [1:0] Disable, input clk, output [1:0] Enable, output reg Pause=1'b0);
     reg [26:0] Timer=27'b000000000000000000000000000;                               //27'b000000000000000000000000000;
     reg HalfPause=1'b0;
@@ -14,6 +15,3 @@ module DisableHandler(input [1:0] Disable, input clk, output [1:0] Enable, outpu
     assign Enable[1] = ~HalfPause;
     assign Enable[0] = ~HalfPause;
 endmodule
-
-
-
