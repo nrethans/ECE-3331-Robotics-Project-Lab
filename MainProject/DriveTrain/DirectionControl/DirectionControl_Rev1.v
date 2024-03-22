@@ -42,11 +42,11 @@ module DirectionControl(
             TURN_1110=5'b10001,
             TURN_1111=5'b10010,
               FORWARD=5'b10011,
-                RESET=5'b10100;
+  RESET_MOTOR_ENCODER=5'b10100;
     
 
     reg [4:0] STATE=5'b0, PREV_STATE=5'b0;
-
+    reg IND_FLG=0, FWD_FLG=0,RDY_FLG=0;
     always@(posedge clk)begin
         if(reset) begin
             STATE=Idle;
@@ -83,18 +83,43 @@ module DirectionControl(
                         PREV_STATE=STATE;
                         STATE=PAUSE;
                     end
-                    else if((track_count_Aside==6'b0)&&(track_count_Bside==6'b0)) STATE=FORWARD;
+                    else if(reset) STATE=RESET_MOTOR_ENCODER;
+                    else if((track_count_Aside==6'b0)&&(track_count_Bside==6'b0)) STATE=RESET_MOTOR_ENCODER;
                     //define limit later
                 end
-                RESET: if(!Reset_Flag) STATE= 
+                RESET_MOTOR_ENCODER: begin
+                    casex({IND_FLG,FWD_FLG,RDY_FLG})
+                        xx0: STATE=RESET_MOTOR_ENCODER;
+                        001: begin
+                            STATE=IDLE;
+                            {IND_FLG,FWD_FLG,RDY_FLG}=3'b0;
+                        end
+                        101: begin
+                            STATE=INDUCTANCE;
+                            {IND_FLG,FWD_FLG,RDY_FLG}=3'b0;
+                        end
+                        011: begin
+                            STATE=FORWARD;
+                            {IND_FLG,FWD_FLG,RDY_FLG}=3'b0;
+                        end
+                        default: begin
+                            STATE=IDLE;
+                            {IND_FLG,FWD_FLG,RDY_FLG}=3'b0;
+                        end
+                    endcase
+                end
                 FORWARD:
                  begin
                     if(pause) begin
                         PREV_STATE=STATE;
                         STATE=PAUSE;
                     end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if((track_count_Aside==6'b0)&&(track_count_Bside==6'b0)) STATE=IDLE;
+                    else if(reset) STATE=RESET_MOTOR_ENCODER;
+                    else if(inductance) begin
+                        IND_FLG=1'b1;
+                        STATE=RESET_MOTOR_ENCODER;
+                    end
+                    else if((track_count_Aside==6'b0)&&(track_count_Bside==6'b0)) STATE=RESET_MOTOR_ENCODER;
                     //define limit later
                 end
                 TURN_0000: begin
@@ -102,145 +127,32 @@ module DirectionControl(
                         PREV_STATE=STATE;
                         STATE=PAUSE;
                     end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0001: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
+                    else if(reset) STATE=RESET_MOTOR_ENCODER;
+                    else if(inductance) begin
+                        IND_FLG=1'b1;
+                        STATE=RESET_MOTOR_ENCODER;
                     end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0010: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
+                    else if(track_count_Aside==6'b0) begin
+                        FWD_FLG=1'b1;
+                        STATE=FORWARD;
                     end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
                     //define limit later
                 end
-                TURN_0011: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0100: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0101: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0110: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_0111: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Aside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1000: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if((track_count_Aside==6'b0)&&(track_count_Bside==6'b0)) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1001: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1010: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1011: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1100: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1101: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                     else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1110: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
-                TURN_1111: begin
-                    if(pause) begin
-                        PREV_STATE=STATE;
-                        STATE=PAUSE;
-                    end
-                    else if(inductance) STATE=INDUCTANCE;
-                    else if(track_count_Bside==6'b0) STATE=FORWARD;
-                    //define limit later
-                end
+                // TURN_0001:
+                // TURN_0010:
+                // TURN_0011:
+                // TURN_0100:
+                // TURN_0101:
+                // TURN_0110:
+                // TURN_0111:
+                // TURN_1000:
+                // TURN_1001:
+                // TURN_1010:
+                // TURN_1011:
+                // TURN_1100:
+                // TURN_1101:
+                // TURN_1110:
+                // TURN_1111:
             endcase
         end
         case(STATE)
@@ -250,7 +162,6 @@ module DirectionControl(
                 BWD_A<=1'b0;
                 BWD_B<=1'b0;
                 Duty_Sel<=2'b00;
-                MotorEncoder_RST<=1'b0;
             end
             PAUSE: begin
                 FWD_A<=1'b0;
@@ -259,31 +170,34 @@ module DirectionControl(
                 BWD_B<=1'b0;
             end
             INDUCTANCE: begin
-                MotorEncoder_RST=1'b1;
                 BWD_A<=1'b1;
                 BWD_B<=1'b1;
             end
+            RESET_MOTOR_ENCODER: begin
+                always@(posedge clk) begin
+                    //Reset Timer
+                    
+                end
+            end
             FORWARD: begin
-                MotorEncoder_RST=1'b1;
-                //MotorEncoder_RST STATE?
-        
+                
             end
             TURN_0000:
-            TURN_0001:
-            TURN_0010:
-            TURN_0011:
-            TURN_0100:
-            TURN_0101:
-            TURN_0110:
-            TURN_0111:
-            TURN_1000:
-            TURN_1001:
-            TURN_1010:
-            TURN_1011:
-            TURN_1100:
-            TURN_1101:
-            TURN_1110:
-            TURN_1111:
+            // TURN_0001:
+            // TURN_0010:
+            // TURN_0011:
+            // TURN_0100:
+            // TURN_0101:
+            // TURN_0110:
+            // TURN_0111:
+            // TURN_1000:
+            // TURN_1001:
+            // TURN_1010:
+            // TURN_1011:
+            // TURN_1100:
+            // TURN_1101:
+            // TURN_1110:
+            // TURN_1111:
         endcase
     end
 endmodule
