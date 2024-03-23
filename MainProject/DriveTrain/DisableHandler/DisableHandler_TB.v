@@ -2,7 +2,7 @@
 `timescale 1ns/1ns
 module testbench;
     reg [1:0] Disable = 2'b00;
-    wire [1:0] Enable; 
+    wire Enable; 
     DisableHandler UUT(Disable,clk,Enable,Pause); 
     //Wavetable
     reg clk = 0; 

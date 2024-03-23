@@ -1,3 +1,23 @@
+/*
+    ECE 3331-303 Group 3
+    Spring 2024
+
+    Name: Nicholas Rethans
+    Module Name: IR_Motor_Encoder
+    Submodule of: 
+    Dependances: 
+    Description:
+
+    Inputs: 
+
+    Outputs: 
+
+    Notes:
+        Top/Bottom Tread width = 0.4cm
+        Sloped section = 0.1cm
+        peak to peak = 1cm
+*/
+
 module IR_Motor_Encoder(input clk, reset, IR_Sense, output reg [5:0] Track_Count=6'b0);
     reg [1:0] EdgeTest=2'b0;
     parameter LOAD = 2'b00, EDGE_CHECK = 2'b01, INCREMENT = 2'b10, SHIFT = 2'b11;
