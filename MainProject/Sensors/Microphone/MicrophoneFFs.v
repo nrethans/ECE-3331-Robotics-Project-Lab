@@ -26,12 +26,18 @@ module FF(CLK,D,Q);
 endmodule
 
 module MicFFs(input CLK,RightMic,LeftMic, output Direction);
-    reg RMic = 0, LMic=0;
-    wire W1;
-    always@(CLK) begin
+    reg RMic = 0, LMic=0, RRMic=0, LLMic=0;
+    wire W1,L,R;
+    always@(posedge CLK) begin
         RMic=RightMic;
         LMic=LeftMic;
     end
+    always@(negedge CLK) begin
+        RMic=RightMic;
+        LMic=LeftMic;
+    end
+    assign L = LLMic|LMic;
+    assign R = RRMic|RMic;
     FF U0(LMic,RMic,W1);
     FF U1(CLK,W1,Direction);
 
