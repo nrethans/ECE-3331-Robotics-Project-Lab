@@ -82,7 +82,7 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                 {FWD_A,FWD_B}=2'b00;
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 IND_COUNT=IND_COUNT+1;
-                if(IND_COUNT==4/*29'd300_000_000*/) begin
+                if(IND_COUNT==29'd300_000_000) begin
                     IND_FLG=1'b0;
                     IND_COUNT=29'b0;
                 end

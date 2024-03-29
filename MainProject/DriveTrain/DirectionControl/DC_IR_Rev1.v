@@ -77,7 +77,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1000;
                 {SL_FLG,IND_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==4/*29'd200_000_000*/)begin
+                if(COUNT==29'd200_000_000)begin
                     SR_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -87,7 +87,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b0010;
                 {SR_FLG,IND_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==4/*29'd200_000_000*/)begin
+                if(COUNT==29'd200_000_000)begin
                     SL_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -103,7 +103,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,SL_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==4/*29'd300_000_000*/) begin //300,000,000 = 3 seconds
+                if(COUNT==29'd300_000_000) begin //300,000,000 = 3 seconds
                     IND_FLG=1'b0;
                     COUNT=29'b0;
                 end
