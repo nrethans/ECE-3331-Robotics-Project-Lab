@@ -12,7 +12,7 @@ module testbench;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-            #1000; Disable = 1; #1000; Disable = 0; #15000; Disable = 2; #1000; Disable = 0; #15000;
+            #1000; Disable = 1; #1000; Disable = 0; #160000;
         $finish;     
     end
 endmodule

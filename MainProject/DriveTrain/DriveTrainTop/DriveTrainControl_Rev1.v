@@ -13,6 +13,18 @@
 
     Outputs: Enable, FWD_OUTA, BWD_OUTA, FWD_OUTB, BWD_OUTB
     Notes: 
+
+    IR:
+        Small right = 200_000_000
+        Small left = 200_000_000
+        Inductance = 300_000_000
+    Ball:
+        Inductance = 300_000_000
+    Disable:
+        Pause = 75_000_000
+        Enable = 150_000_000
+    PWM: 
+        Period = 25_000
 */
 //`include "MainProject/DriveTrain/DirectionControl/DC_IR_Rev1.v"
 //`include "MainProject/DriveTrain/DirectionControl/DC_Rev2.v"
