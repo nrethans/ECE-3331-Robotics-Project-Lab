@@ -5,8 +5,8 @@
     Name: Nicholas Rethans
     Module Name: MicrophoneFFs
     Submodule of: 
-    Dependances: 
-    Description:
+    Dependances: Ball SM
+    Description: Determine is ball is closer to left or right mic using the phase of both signals.
 
     Inputs: CLK, RightMic, LeftMic
 
@@ -26,11 +26,11 @@ module FF(CLK,D,Q);
 endmodule
 
 module MicFFs(input CLK,RightMic,LeftMic, output Direction);
-    reg RMic = 0, LMic=0, RRMic=0, LLMic=0;
+    reg RMic = 0, LMic=0, RRMic, LLMic;
     wire W1,L,R;
     always@(posedge CLK) begin
-        RMic=RightMic;
-        LMic=LeftMic;
+        RRMic=RightMic;
+        LLMic=LeftMic;
     end
     always@(negedge CLK) begin
         RMic=RightMic;
@@ -38,7 +38,6 @@ module MicFFs(input CLK,RightMic,LeftMic, output Direction);
     end
     assign L = LLMic|LMic;
     assign R = RRMic|RMic;
-    FF U0(LMic,RMic,W1);
+    FF U0(L,R,W1);
     FF U1(CLK,W1,Direction);
-
 endmodule
