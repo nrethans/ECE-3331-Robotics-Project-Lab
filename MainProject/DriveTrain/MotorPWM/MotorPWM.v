@@ -17,9 +17,9 @@
 */
 module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignal);
     reg [13:0] count = 14'b0000000000000;
-    parameter QuarterDuty = 14'b00110000110101, //3125
+    parameter QuarterDuty = 14'd5000, //5,000
                  HalfDuty = 14'b01100001101010, //6250
-         ThreeQuarterDuty = 14'b10010010011111; //9375
+         ThreeQuarterDuty = 14'd10000; //10,000
     always @(posedge clk) begin
         if(count >= 14'b11000011010100)begin                                    
             count = 14'b00000000000000;
