@@ -3,7 +3,7 @@
     Spring 2024
 
     Name: Nicholas Rethans
-    Module Name: MotorEncoder
+    Module Name: PWMEncoder
     Submodule of: DriveTrainControl
     Dependances: MotorPWM
     Description:
@@ -16,8 +16,8 @@
 
 */
 
-module PWMEncoder(input swA,swB,Pulse, output SerialOut1,SerialOut2);
-    assign SerialOut1 = swA&Pulse;
-    assign SerialOut2 = swB&Pulse;
+module PWMEncoder(input FWD,BWD,Pulse, output SerialOut1,SerialOut2);
+    assign SerialOut1 = FWD&Pulse;
+    assign SerialOut2 = BWD&Pulse;
 endmodule
 
