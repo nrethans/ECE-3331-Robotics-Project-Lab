@@ -14,7 +14,7 @@
 
     States: IDLE, TURN_RIGHT, SMALL_RIGHT, SMALL_LEFT, PAUSE, INDUCTNACE
      
-    Notes: 
+    Notes: Change turning mechanism to turn in place
 
 */
 module GoalDirectionControl(
