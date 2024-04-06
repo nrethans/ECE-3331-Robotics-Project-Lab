@@ -17,7 +17,7 @@
 
 */
 
-module FrequencyCounter(
+module FrequencyCounter_1K(
     input clk,       // Clock input
     input ir,       // Input signal
     input enable,    // Enable signal
@@ -41,19 +41,19 @@ module FrequencyCounter(
             if (!EdgeTest[0] && EdgeTest[1]) temp <= temp + 1;
             EdgeTest[1] <= EdgeTest[0];
             // Update Hz every 10 million clock cycles (for 100 MHz clock)
-            if (count == 10_000_000) begin
+            if (count == 24'd10_000_000) begin
                 Hz <= temp * 10; // Scale to fit 100 MHz
-                if(Hz >= 900 && Hz =<1200) ir1k <= 1;
-                else ir1k <= 0;    
-                temp <= 0;
-                count <= 0;
+                if(Hz >= 900 && Hz <= 1200) ir1k <= 1'b1;
+                else ir1k <= 1'b0;    
+                temp <= 16'b0;
+                count <= 24'b0;
             end 
-            else count <= count + 1;
+            else count <= count + 1'b1;
         end 
         else begin
             // Reset internal state if enable is low
-            temp <= 0;
-            count <= 0;
+            temp <= 16'b0;
+            count <= 24'b0;
         end
     end
 endmodule

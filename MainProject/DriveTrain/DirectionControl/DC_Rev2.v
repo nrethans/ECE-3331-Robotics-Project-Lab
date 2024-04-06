@@ -28,7 +28,7 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
         TURN_RIGHT=3'b011,
          TURN_LEFT=3'b100;
 
-    reg[2:0] STATE=3'b0,PREV_STATE=3'b0;
+    reg [2:0] STATE=3'b0,PREV_STATE=3'b0;
     reg IND_FLG = 1'b1; //IND_FLG Transition to low when inductance counter is done
     reg [28:0] IND_COUNT=29'b0;
 

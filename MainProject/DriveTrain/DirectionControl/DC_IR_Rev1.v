@@ -68,28 +68,30 @@ module GoalDirectionControl(
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1111;
             end
             TURN_RIGHT: begin
-                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1100;
-                {Duty_SelA,Duty_SelB}=4'b1000;
+                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1001;
+                {Duty_SelA,Duty_SelB}=4'b0000;
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1110;
             end
             SMALL_RIGHT: begin
-                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1100;
-                {Duty_SelA,Duty_SelB}=4'b1000;
+                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1001;
+                {Duty_SelA,Duty_SelB}=4'b1010;
                 {SL_FLG,IND_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd200_000_000)begin
+                if(COUNT==29'd100_000_000)begin
                     SR_FLG=1'b0;
                     COUNT=29'b0;
+                    STATE=IDLE;
                 end
             end
             SMALL_LEFT: begin
-                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1100;
-                {Duty_SelA,Duty_SelB}=4'b0010;
+                {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0110;
+                {Duty_SelA,Duty_SelB}=4'b0101;
                 {SR_FLG,IND_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd200_000_000)begin
+                if(COUNT==29'd100_000_000)begin
                     SL_FLG=1'b0;
                     COUNT=29'b0;
+                    STATE=IDLE;
                 end
             end
             PAUSE: begin
@@ -103,7 +105,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,SL_FLG,Done}=3'b110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd300_000_000) begin //300,000,000 = 3 seconds
+                if(COUNT==29'd200_000_000) begin //200,000,000 = 2 seconds
                     IND_FLG=1'b0;
                     COUNT=29'b0;
                 end

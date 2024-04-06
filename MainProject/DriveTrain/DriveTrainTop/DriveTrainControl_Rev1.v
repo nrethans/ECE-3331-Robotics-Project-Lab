@@ -39,14 +39,18 @@ module DriveTrainTop(
 );
 
     wire Pause,PWM_Signal_A,PWM_Signal_B,LR_Mic_Signal;
+    wire IR_1K,IR_10K;
     wire [1:0] Duty_SelA, Duty_SelA1, Duty_SelA2, Duty_SelB, Duty_SelB1, Duty_SelB2;
     wire FWD_A,FWD_A1,FWD_A2, FWD_B, FWD_B1, FWD_B2, BWD_A, BWD_A1, BWD_A2,BWD_B, BWD_B1, BWD_B2;
     MicFFs U6(clk,RightMic,LeftMic,LR_Mic_Signal);
     
     //Make sure the Enable signal stays high the whole time untill ball detection occurs
-    GoalDirectionControl U1(clk,Enable_Goal_SM,Pause,Inductance_Sense,IR_1K_Reciever,IR_10K_Reciever,FWD_A1,FWD_B1,BWD_A1,BWD_B1,Goal_SM_Done,Duty_SelA1,Duty_SelB1);
-    BallDirectionControl U2(clk,Enable_Ball_SM,LR_Mic_Signal,Pause,Inductance_Sense,IR_Ball_Detection,FWD_A2,FWD_B2,BWD_A2,BWD_B2,Ball_SM_Done,Duty_SelA2,Duty_SelB2);
+    GoalDirectionControl U1(clk,Enable_Goal_SM,Pause,Inductance_Sense,IR_1K,IR_10K,FWD_A1,FWD_B1,BWD_A1,BWD_B1,Goal_SM_Done,Duty_SelA1,Duty_SelB1);
+    BallDirectionControl U2(clk,Enable_Ball_SM,LR_Mic_Signal,Pause,Inductance_Sense,~IR_Ball_Detection,FWD_A2,FWD_B2,BWD_A2,BWD_B2,Ball_SM_Done,Duty_SelA2,Duty_SelB2);
     DisableHandler U3({DisableA,DisableB},clk,Enable,Pause);
+    
+    FrequencyCounter_1K(clk,IR_1K_Reciever,1'b1,1'b0,IR_1K);
+    FrequencyCounter_10K(clk,IR_10K_Reciever,1'b1,1'b0,IR_10K);
     
     assign Duty_SelA = Duty_SelA1|Duty_SelA2;
     assign Duty_SelB = Duty_SelB1|Duty_SelB2;

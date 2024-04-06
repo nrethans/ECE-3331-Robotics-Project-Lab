@@ -17,7 +17,7 @@
 
 */
 
-module FrequencyCounter(
+module FrequencyCounter_10K(
     input clk,       // Clock input
     input ir,       // Input signal
     input enable,    // Enable signal
