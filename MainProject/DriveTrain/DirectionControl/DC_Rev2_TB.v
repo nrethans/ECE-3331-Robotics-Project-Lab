@@ -23,10 +23,14 @@ module testbench;
         Pause=0;
         #4;
         Inductance=1;
-        #4;
         #12;
         Inductance=0;
-        #12;
+        #4;
+        Ball_Detect=1;
+        #4;
+        Ball_Detect=0;
+        #4;
+        #4;
         $finish;     
     end
 endmodule

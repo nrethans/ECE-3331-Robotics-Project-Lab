@@ -32,10 +32,12 @@ module GoalDirectionControl(
     reg [2:0] STATE = 3'b000, PREV_STATE = 3'b000;
     reg SR_FLG = 1'b0, SL_FLG = 1'b0, IND_FLG = 1'b0;
     reg [28:0] COUNT = 29'b0;
-
+    reg [1:0] Enable_Edge=2'b00;
     always@(posedge clk)begin
+        Enable_Edge[1]=Enable_Edge[0];
+        Enable_Edge[0]=Enable;
         case(STATE)
-            IDLE: STATE = (Enable)?(TURN_RIGHT):(IDLE);
+            IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
             TURN_RIGHT: begin
                 PREV_STATE=TURN_RIGHT;
                 STATE = (Pause)?(PAUSE):(

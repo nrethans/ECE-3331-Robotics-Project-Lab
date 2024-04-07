@@ -12,10 +12,13 @@ module DC_Defence(
   INDUCTANCE_PAUSE = 3'b110;
     
     reg [2:0] STATE = 3'b000;
+    reg [1:0] Enable_Edge = 2'b00;
 
     always @(posedge clk) begin
+        Enable_Edge[1]=Enable_Edge[0];
+        Enable_Edge[0]=Enable;
         case(STATE) //STATE Transitions
-            IDLE: STATE = (Enable)?(TURN_RIGHT):(IDLE);
+            IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
             TURN_RIGHT: begin
                     STATE = (Pause)?(RIGHT_PAUSE):(
                         (Inductance)?(INDUCTANCE):(
