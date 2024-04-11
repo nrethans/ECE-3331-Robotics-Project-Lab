@@ -69,7 +69,7 @@ module GoalDirectionControl(
             end
             TURN_RIGHT: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1001;
-                {Duty_SelA,Duty_SelB}=4'b0000;
+                {Duty_SelA,Duty_SelB}=4'b0101;
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1110;
             end
             SMALL_RIGHT: begin
