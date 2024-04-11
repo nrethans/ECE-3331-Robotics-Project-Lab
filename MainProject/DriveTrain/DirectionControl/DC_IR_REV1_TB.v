@@ -24,17 +24,18 @@ module testbench;
         #4;
         Pause=0;
         #4;
-        Inductance=1;
-        #4;
-        Inductance=0;
-        #10;
+        // Inductance=1;
+        // #4;
+        // Inductance=0;
+        // #10;
         IR_1k=1;
-        #10;
+        #4;
         IR_1k=0;
+        #4;
         Enable=1;
         #4
-        Enable=0;
         IR_10k=1;
+        #14;
         #14;
         $finish;     
     end

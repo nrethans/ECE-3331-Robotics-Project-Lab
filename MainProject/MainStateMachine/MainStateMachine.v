@@ -16,8 +16,10 @@
 
 */
 module Main_State_Machine(
-    input clk, input Attack, input Defense, input Reset, input Ball_SM_Done, input Goal_SM_Done, input Defense_SM_Done, input Shooter_Done,
-    output reg Ball_Detection_SM_EN = 1'b0, output reg Goal_Detection_SM_EN = 1'b0, output reg Defense_SM_EN = 1'b0, output reg Shooter_EN = 1'b0);
+    input clk, input Attack, input Defense, input Reset, input Ball_SM_Done, 
+    input Goal_SM_Done, input Defense_SM_Done, input Shooter_Done,
+    output reg Ball_Detection_SM_EN = 1'b0, output reg Goal_Detection_SM_EN = 1'b0, 
+    output reg Defense_SM_EN = 1'b0, output reg Shooter_EN = 1'b0);
 
     parameter IDLE = 3'b000,
     BALL_DETECTION = 3'b001,
@@ -26,15 +28,19 @@ module Main_State_Machine(
            DEFENSE = 3'b100;
 
     reg [2:0] STATE = 3'b000;
-
+    reg [1:0] AttackEdge = 2'b00, DefenseEdge = 2'b00;
     always@(posedge clk) begin
+        AttackEdge[1]=AttackEdge[0];
+        DefenseEdge[1]=DefenseEdge[0];
+        AttackEdge[0]=Attack;
+        DefenseEdge[0]=Defense;
         if(Reset) STATE = IDLE;
         else begin
             case(STATE) //State Transitions:
                 IDLE: begin
-                    STATE = (Attack&Defense)?(IDLE):(
-                        (Defense)?(DEFENSE):(
-                            (Attack)?(BALL_DETECTION):(IDLE)
+                    STATE = ((~AttackEdge[1]&AttackEdge[0])&(~DefenseEdge[1]&DefenseEdge[0]))?(IDLE):(
+                        (~DefenseEdge[1]&DefenseEdge[0])?(DEFENSE):(
+                            (~AttackEdge[1]&AttackEdge[0])?(BALL_DETECTION):(IDLE)
                         )
                     );
                 end

@@ -31,14 +31,16 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
     reg [2:0] STATE=3'b0,PREV_STATE=3'b0;
     reg IND_FLG = 1'b1; //IND_FLG Transition to low when inductance counter is done
     reg [28:0] IND_COUNT=29'b0;
-
-    always@(posedge clk)begin
+    reg [1:0] Enable_Edge=2'b00;
+    always@(posedge clk) begin
+        Enable_Edge[1]=Enable_Edge[0];
+        Enable_Edge[0]=Enable;
         if(Ball_Detect) begin
             STATE=IDLE;
         end
         else begin
             case(STATE)
-                IDLE: STATE = (Enable)?(TURN_RIGHT):(IDLE);
+                IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
                 PAUSE: STATE = (Pause)?(PAUSE):(PREV_STATE);
                 INDUCTANCE: begin
                     STATE = (IND_FLG)?(INDUCTANCE):(

@@ -49,8 +49,8 @@ module DriveTrainTop(
     BallDirectionControl U2(clk,Enable_Ball_SM,LR_Mic_Signal,Pause,Inductance_Sense,IR_Ball_Detection,FWD_A2,FWD_B2,BWD_A2,BWD_B2,Ball_SM_Done,Duty_SelA2,Duty_SelB2);
     DisableHandler U3({DisableA,DisableB},clk,Enable,Pause);
     
-    FrequencyCounter_1K(clk,IR_1K_Reciever,1'b1,1'b0,IR_1K);
-    FrequencyCounter_10K(clk,IR_10K_Reciever,1'b1,1'b0,IR_10K);
+    FrequencyCounter_1K U6A(clk,IR_1K_Reciever,1'b1,1'b0,IR_1K);
+    FrequencyCounter_10K U6B(clk,IR_10K_Reciever,1'b1,1'b0,IR_10K);
     
     assign Duty_SelA = Duty_SelA1|Duty_SelA2;
     assign Duty_SelB = Duty_SelB1|Duty_SelB2;

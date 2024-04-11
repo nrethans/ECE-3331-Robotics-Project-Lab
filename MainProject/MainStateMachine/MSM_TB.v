@@ -1,4 +1,4 @@
-`include "MainProject\MainStateMachine\MainStateMachine.v"
+`include "MainProject/MainStateMachine/MainStateMachine.v"
 
 module testbench;
     reg Attack=1'b0,Defense=1'b0,Reset=1'b0,
@@ -17,7 +17,27 @@ module testbench;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars(0, testbench);
-            #10;
+            #4;
+            Defense = 1;
+            #4; 
+            Defense = 0;
+            #4;
+            Defense_SM_Done = 1;
+            #4;
+            Defense_SM_Done = 0;
+            #4;
+            Attack = 1;
+            #4;
+            Ball_SM_Done = 1;
+            #4;
+            Goal_SM_Done = 1;
+            #4;
+            Shooter_Done = 1;
+            #4;
+            Defense = 1;
+            #4;
+            Reset = 1;
+            #4;
         $finish;     
     end
 endmodule
