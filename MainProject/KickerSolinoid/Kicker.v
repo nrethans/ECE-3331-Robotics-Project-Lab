@@ -15,7 +15,10 @@ module Kicker(
         EnableEdge=Enable;
         case(STATE)
             IDLE: STATE = (EN)?(KICK):(IDLE);
-            KICK: STATE = (Count[3])?(IDLE):(KICK);
+            KICK: begin
+                STATE = (Count[3])?(IDLE):(KICK);
+                Done = (Count[3])?(1'b1):(1'b0);
+            end
         endcase
         case(STATE)
             IDLE: Kick = 1'b0;
