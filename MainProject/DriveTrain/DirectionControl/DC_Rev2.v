@@ -20,7 +20,7 @@
 
 */
 module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_Detect,
-                        output reg FWD_A=1'b0,FWD_B=1'b0,BWD_A=1'b0,BWD_B=1'b0,Done=1'b1,
+                        output reg FWD_A=1'b0,FWD_B=1'b0,BWD_A=1'b0,BWD_B=1'b0,Done=1'b0,
                         output reg [1:0] Duty_SelA=2'b00, Duty_SelB=2'b00);
     parameter IDLE=3'b000,
              PAUSE=3'b001,
@@ -71,7 +71,6 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0;
                 {Duty_SelA,Duty_SelB}=4'b0;
                 IND_FLG=1'b1;
-                Done=1'b1;
             end
             PAUSE: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0;

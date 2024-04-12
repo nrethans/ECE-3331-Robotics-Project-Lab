@@ -19,7 +19,7 @@
 */
 module GoalDirectionControl(
     input clk, Enable, Pause, Inductance, IR_1k, IR_10k,
-    output reg FWD_A=1'b0,FWD_B=0,BWD_A=1'b0,BWD_B=0,Done=1'b1,
+    output reg FWD_A=1'b0,FWD_B=0,BWD_A=1'b0,BWD_B=0,Done=1'b0,
     output reg [1:0] Duty_SelA = 2'b00, Duty_SelB =2'b00
 );
     parameter IDLE = 3'b000,
@@ -67,7 +67,7 @@ module GoalDirectionControl(
             IDLE: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0;
                 {Duty_SelA,Duty_SelB}=4'b0;
-                {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1111;
+                {SR_FLG,SL_FLG,IND_FLG}=3'b111;
             end
             TURN_RIGHT: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1001;
@@ -83,6 +83,7 @@ module GoalDirectionControl(
                     SR_FLG=1'b0;
                     COUNT=29'b0;
                     STATE=IDLE;
+                    Done = 1'b1;
                 end
             end
             SMALL_LEFT: begin
@@ -94,6 +95,7 @@ module GoalDirectionControl(
                     SL_FLG=1'b0;
                     COUNT=29'b0;
                     STATE=IDLE;
+                    Done = 1'b1;
                 end
             end
             PAUSE: begin
