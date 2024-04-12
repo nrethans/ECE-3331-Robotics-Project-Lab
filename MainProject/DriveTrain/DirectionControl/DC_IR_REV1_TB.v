@@ -31,12 +31,12 @@ module testbench;
         IR_1k=1;
         #4;
         IR_1k=0;
-        #4;
-        Enable=1;
-        #4
-        IR_10k=1;
-        #14;
-        #14;
+        #20;
+        // Enable=1;
+        // #4
+        // IR_10k=1;
+        // #14;
+        // #14;
         $finish;     
     end
 endmodule

@@ -1,0 +1,751 @@
+$date
+	Fri Apr 12 15:23:19 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module testbench $end
+$var wire 1 ! Kick $end
+$var wire 1 " FWDB $end
+$var wire 1 # FWDA $end
+$var wire 1 $ Enable $end
+$var wire 1 % BWDB $end
+$var wire 1 & BWDA $end
+$var reg 1 ' Attack $end
+$var reg 1 ( Defense $end
+$var reg 1 ) DisableA $end
+$var reg 1 * DisableB $end
+$var reg 1 + IR_10K_Reciever $end
+$var reg 1 , IR_1K_Reciever $end
+$var reg 1 - IR_Ball_Detect $end
+$var reg 1 . Inductance_Sense $end
+$var reg 1 / LeftMic $end
+$var reg 1 0 Reset $end
+$var reg 1 1 RightMic $end
+$var reg 1 2 clk $end
+$scope module UUT $end
+$var wire 1 ' Attack $end
+$var wire 1 3 BWD_A $end
+$var wire 1 4 BWD_B $end
+$var wire 1 ( Defense $end
+$var wire 1 ) DisableA $end
+$var wire 1 * DisableB $end
+$var wire 2 5 Duty_SelA [1:0] $end
+$var wire 2 6 Duty_SelB [1:0] $end
+$var wire 1 7 FWD_A $end
+$var wire 1 8 FWD_B $end
+$var wire 1 + IR_10K_Reciever $end
+$var wire 1 , IR_1K_Reciever $end
+$var wire 1 - IR_Ball_Detect $end
+$var wire 1 . Inductance_Sense $end
+$var wire 1 / LeftMic $end
+$var wire 1 0 Reset $end
+$var wire 1 1 RightMic $end
+$var wire 1 2 clk $end
+$var wire 1 9 Pause $end
+$var wire 1 : PWM_Signal_B $end
+$var wire 1 ; PWM_Signal_A $end
+$var wire 1 < Kicker_EN $end
+$var wire 1 = Kicker_Done $end
+$var wire 1 ! Kick $end
+$var wire 1 > IR_1K $end
+$var wire 1 ? IR_10K $end
+$var wire 1 @ Goal_SM_Done $end
+$var wire 1 A Goal_Detection_SM_EN $end
+$var wire 1 B FWD_B3 $end
+$var wire 1 C FWD_B2 $end
+$var wire 1 D FWD_B1 $end
+$var wire 1 E FWD_A3 $end
+$var wire 1 F FWD_A2 $end
+$var wire 1 G FWD_A1 $end
+$var wire 1 " FWDB $end
+$var wire 1 # FWDA $end
+$var wire 1 $ Enable $end
+$var wire 2 H Duty_SelB3 [1:0] $end
+$var wire 2 I Duty_SelB2 [1:0] $end
+$var wire 2 J Duty_SelB1 [1:0] $end
+$var wire 2 K Duty_SelA3 [1:0] $end
+$var wire 2 L Duty_SelA2 [1:0] $end
+$var wire 2 M Duty_SelA1 [1:0] $end
+$var wire 1 N Direction $end
+$var wire 1 O Defense_SM_EN $end
+$var wire 1 P Defense_SM_Done $end
+$var wire 1 Q Ball_SM_Done $end
+$var wire 1 R Ball_Detection_SM_EN $end
+$var wire 1 S BWD_B3 $end
+$var wire 1 T BWD_B2 $end
+$var wire 1 U BWD_B1 $end
+$var wire 1 V BWD_A3 $end
+$var wire 1 W BWD_A2 $end
+$var wire 1 X BWD_A1 $end
+$var wire 1 % BWDB $end
+$var wire 1 & BWDA $end
+$scope module U0 $end
+$var wire 1 Y ATK $end
+$var wire 1 ' Attack $end
+$var wire 1 Z DEF $end
+$var wire 1 ( Defense $end
+$var wire 1 0 Reset $end
+$var wire 1 2 clk $end
+$var wire 1 = Shooter_Done $end
+$var wire 1 @ Goal_SM_Done $end
+$var wire 1 P Defense_SM_Done $end
+$var wire 1 Q Ball_SM_Done $end
+$var parameter 3 [ BALL_DETECTION $end
+$var parameter 3 \ DEFENSE $end
+$var parameter 3 ] GOAL_DETECTION $end
+$var parameter 3 ^ IDLE $end
+$var parameter 3 _ SHOOT $end
+$var reg 1 ` AttackEdge $end
+$var reg 1 R Ball_Detection_SM_EN $end
+$var reg 1 a DefenseEdge $end
+$var reg 1 O Defense_SM_EN $end
+$var reg 1 A Goal_Detection_SM_EN $end
+$var reg 3 b STATE [2:0] $end
+$var reg 1 < Shooter_EN $end
+$var reg 1 c attack $end
+$var reg 1 d defense $end
+$upscope $end
+$scope module U1 $end
+$var wire 1 e Ball_Detect $end
+$var wire 1 f EN $end
+$var wire 1 R Enable $end
+$var wire 1 . Inductance $end
+$var wire 1 2 clk $end
+$var wire 1 9 Pause $end
+$var wire 1 N BallSignal $end
+$var parameter 3 g IDLE $end
+$var parameter 3 h INDUCTANCE $end
+$var parameter 3 i PAUSE $end
+$var parameter 3 j TURN_LEFT $end
+$var parameter 3 k TURN_RIGHT $end
+$var reg 1 X BWD_A $end
+$var reg 1 U BWD_B $end
+$var reg 1 Q Done $end
+$var reg 2 l Duty_SelA [1:0] $end
+$var reg 2 m Duty_SelB [1:0] $end
+$var reg 1 n Enable_Edge $end
+$var reg 1 G FWD_A $end
+$var reg 1 D FWD_B $end
+$var reg 29 o IND_COUNT [28:0] $end
+$var reg 1 p IND_FLG $end
+$var reg 3 q PREV_STATE [2:0] $end
+$var reg 3 r STATE [2:0] $end
+$var reg 1 s enable $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 t EN $end
+$var wire 1 A Enable $end
+$var wire 1 . Inductance $end
+$var wire 1 2 clk $end
+$var wire 1 9 Pause $end
+$var wire 1 > IR_1k $end
+$var wire 1 ? IR_10k $end
+$var parameter 3 u IDLE $end
+$var parameter 3 v INDUCTANCE $end
+$var parameter 3 w PAUSE $end
+$var parameter 3 x SMALL_LEFT $end
+$var parameter 3 y SMALL_RIGHT $end
+$var parameter 3 z TURN_RIGHT $end
+$var reg 1 W BWD_A $end
+$var reg 1 T BWD_B $end
+$var reg 29 { COUNT [28:0] $end
+$var reg 1 @ Done $end
+$var reg 2 | Duty_SelA [1:0] $end
+$var reg 2 } Duty_SelB [1:0] $end
+$var reg 1 ~ Enable_Edge $end
+$var reg 1 F FWD_A $end
+$var reg 1 C FWD_B $end
+$var reg 1 !" IND_FLG $end
+$var reg 3 "" PREV_STATE [2:0] $end
+$var reg 1 #" SL_FLG $end
+$var reg 1 $" SR_FLG $end
+$var reg 3 %" STATE [2:0] $end
+$var reg 1 &" enable $end
+$upscope $end
+$scope module U3 $end
+$var wire 1 '" EN $end
+$var wire 1 O Enable $end
+$var wire 1 . Inductance $end
+$var wire 1 2 clk $end
+$var wire 1 9 Pause $end
+$var wire 1 N MicrophoneDirection $end
+$var parameter 3 (" IDLE $end
+$var parameter 3 )" INDUCTANCE $end
+$var parameter 3 *" INDUCTANCE_PAUSE $end
+$var parameter 3 +" LEFT_PAUSE $end
+$var parameter 3 ," RIGHT_PAUSE $end
+$var parameter 3 -" TURN_LEFT $end
+$var parameter 3 ." TURN_RIGHT $end
+$var reg 1 V BWDA $end
+$var reg 1 S BWDB $end
+$var reg 1 P Done $end
+$var reg 2 /" DutyCycleA [1:0] $end
+$var reg 2 0" DutyCycleB [1:0] $end
+$var reg 1 1" Enable_Edge $end
+$var reg 1 E FWDA $end
+$var reg 1 B FWDB $end
+$var reg 3 2" STATE [2:0] $end
+$var reg 1 3" enable $end
+$upscope $end
+$scope module U4 $end
+$var wire 1 4" EN $end
+$var wire 1 < Enable $end
+$var wire 1 2 clk $end
+$var parameter 1 5" IDLE $end
+$var parameter 1 6" KICK $end
+$var reg 4 7" Count [3:0] $end
+$var reg 1 = Done $end
+$var reg 1 8" EnableEdge $end
+$var reg 1 ! Kick $end
+$var reg 1 9" STATE $end
+$upscope $end
+$scope module U5 $end
+$var wire 1 2 CLK $end
+$var wire 1 :" L $end
+$var wire 1 / LeftMic $end
+$var wire 1 ;" R $end
+$var wire 1 1 RightMic $end
+$var wire 1 <" W1 $end
+$var wire 1 N Direction $end
+$var reg 1 =" LLMic $end
+$var reg 1 >" LMic $end
+$var reg 1 ?" RMic $end
+$var reg 1 @" RRMic $end
+$scope module U0 $end
+$var wire 1 :" CLK $end
+$var wire 1 ;" D $end
+$var reg 1 <" Q $end
+$upscope $end
+$scope module U1 $end
+$var wire 1 2 CLK $end
+$var wire 1 <" D $end
+$var reg 1 N Q $end
+$upscope $end
+$upscope $end
+$scope module U6A $end
+$var wire 1 2 clk $end
+$var wire 1 A" enable $end
+$var wire 1 , ir $end
+$var wire 1 B" reset $end
+$var reg 2 C" EdgeTest [1:0] $end
+$var reg 16 D" Hz [15:0] $end
+$var reg 24 E" count [23:0] $end
+$var reg 1 > ir1k $end
+$var reg 16 F" temp [15:0] $end
+$upscope $end
+$scope module U6B $end
+$var wire 1 2 clk $end
+$var wire 1 G" enable $end
+$var wire 1 + ir $end
+$var wire 1 H" reset $end
+$var reg 2 I" EdgeTest [1:0] $end
+$var reg 16 J" Hz [15:0] $end
+$var reg 24 K" count [23:0] $end
+$var reg 1 ? ir10k $end
+$var reg 16 L" temp [15:0] $end
+$upscope $end
+$scope module U7 $end
+$var wire 2 M" SnsDisable [1:0] $end
+$var wire 1 2 clk $end
+$var parameter 2 N" Debounce $end
+$var parameter 2 O" Disable $end
+$var parameter 28 P" FullCount $end
+$var parameter 28 Q" HalfCount $end
+$var parameter 2 R" Idle $end
+$var reg 1 $ Enable $end
+$var reg 1 9 Pause $end
+$var reg 2 S" STATE [1:0] $end
+$var reg 28 T" Timer [27:0] $end
+$upscope $end
+$scope module U8A $end
+$var wire 2 U" DutyCycle [1:0] $end
+$var wire 1 2 clk $end
+$var parameter 14 V" HalfDuty $end
+$var parameter 14 W" QuarterDuty $end
+$var parameter 14 X" ThreeQuarterDuty $end
+$var reg 1 ; PulseSignal $end
+$var reg 14 Y" count [13:0] $end
+$upscope $end
+$scope module U8B $end
+$var wire 2 Z" DutyCycle [1:0] $end
+$var wire 1 2 clk $end
+$var parameter 14 [" HalfDuty $end
+$var parameter 14 \" QuarterDuty $end
+$var parameter 14 ]" ThreeQuarterDuty $end
+$var reg 1 : PulseSignal $end
+$var reg 14 ^" count [13:0] $end
+$upscope $end
+$scope module U9A $end
+$var wire 1 3 BWD $end
+$var wire 1 7 FWD $end
+$var wire 1 ; Pulse $end
+$var wire 1 # SerialOut1 $end
+$var wire 1 & SerialOut2 $end
+$upscope $end
+$scope module U9B $end
+$var wire 1 4 BWD $end
+$var wire 1 8 FWD $end
+$var wire 1 : Pulse $end
+$var wire 1 " SerialOut1 $end
+$var wire 1 % SerialOut2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10011100010000 ]"
+b1001110001000 \"
+b1100001101010 ["
+b10011100010000 X"
+b1001110001000 W"
+b1100001101010 V"
+b0 R"
+b100011110000110100011000000 Q"
+b1000111100001101000110000000 P"
+b1 O"
+b10 N"
+16"
+05"
+b1 ."
+b10 -"
+b11 ,"
+b100 +"
+b110 *"
+b101 )"
+b0 ("
+b1 z
+b10 y
+b11 x
+b100 w
+b101 v
+b0 u
+b11 k
+b100 j
+b1 i
+b10 h
+b0 g
+b11 _
+b0 ^
+b10 ]
+b100 \
+b1 [
+$end
+#0
+$dumpvars
+b1 ^"
+b0 Z"
+b1 Y"
+b0 U"
+b0 T"
+b0 S"
+b0 M"
+b0 L"
+b1 K"
+b0 J"
+b0 I"
+0H"
+1G"
+b0 F"
+b1 E"
+b0 D"
+b0 C"
+0B"
+1A"
+0@"
+0?"
+0>"
+0="
+0<"
+0;"
+0:"
+09"
+08"
+b0 7"
+04"
+03"
+b0 2"
+01"
+b0 0"
+b0 /"
+0'"
+0&"
+b0 %"
+1$"
+1#"
+b0 ""
+1!"
+0~
+b0 }
+b0 |
+b0 {
+0t
+0s
+b0 r
+b0 q
+1p
+b0 o
+0n
+b0 m
+b0 l
+0f
+0e
+0d
+0c
+b0 b
+0a
+0`
+0Z
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+b0 M
+b0 L
+b0 K
+b0 J
+b0 I
+b0 H
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+1;
+1:
+09
+08
+07
+b0 6
+b0 5
+04
+03
+12
+01
+00
+0/
+0.
+1-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+1$
+0#
+0"
+0!
+$end
+#1
+02
+#2
+b10 E"
+b10 K"
+b10 ^"
+b10 Y"
+12
+#3
+02
+#4
+b11 E"
+b11 K"
+b11 Y"
+b11 ^"
+12
+#5
+02
+#6
+b100 E"
+b100 K"
+b100 ^"
+b100 Y"
+12
+#7
+02
+#8
+b101 E"
+b101 K"
+b101 Y"
+b101 ^"
+12
+#9
+02
+#10
+b110 E"
+b110 K"
+b110 ^"
+b110 Y"
+12
+1'
+#11
+1Y
+1c
+02
+#12
+b111 E"
+b111 K"
+0Y
+1R
+b1 b
+1`
+b111 Y"
+b111 ^"
+12
+#13
+1f
+1s
+02
+#14
+b1000 E"
+b1000 K"
+1#
+1"
+b10 5
+b10 U"
+17
+18
+0f
+b1000 ^"
+b1000 Y"
+b10 M
+b10 l
+1G
+1D
+b11 r
+1n
+12
+#15
+02
+#16
+b1001 E"
+b1001 K"
+b10 6
+b10 Z"
+b0 5
+b0 U"
+b10 J
+b10 m
+b0 M
+b0 l
+b100 r
+b11 q
+b1001 Y"
+b1001 ^"
+12
+#17
+02
+#18
+b1010 E"
+b1010 K"
+b1010 ^"
+b1010 Y"
+b100 q
+12
+#19
+02
+#20
+b1011 E"
+b1011 K"
+b1011 Y"
+b1011 ^"
+12
+#21
+02
+#22
+b1100 E"
+b1100 K"
+b1100 ^"
+b1100 Y"
+12
+#23
+02
+#24
+b1101 E"
+b1101 K"
+b1101 Y"
+b1101 ^"
+12
+#25
+02
+#26
+b1110 E"
+b1110 K"
+b1110 ^"
+b1110 Y"
+12
+#27
+02
+#28
+b1111 E"
+b1111 K"
+b1111 Y"
+b1111 ^"
+12
+#29
+02
+#30
+b10000 E"
+b10000 K"
+0#
+0"
+b0 6
+b0 Z"
+07
+08
+b10000 ^"
+b10000 Y"
+b0 J
+b0 m
+0G
+0D
+1Q
+b0 r
+1e
+12
+0-
+0'
+#31
+0c
+02
+#32
+b10001 E"
+b10001 K"
+0R
+1A
+b10 b
+0`
+b10001 Y"
+b10001 ^"
+12
+#33
+1t
+1&"
+0s
+02
+#34
+b10010 E"
+b10010 K"
+1#
+1%
+b1 5
+b1 U"
+b1 6
+b1 Z"
+17
+14
+0t
+b10010 ^"
+b10010 Y"
+b1 L
+b1 |
+b1 I
+b1 }
+1F
+1T
+b1 %"
+1~
+0n
+12
+#35
+02
+#36
+b10011 E"
+b10011 K"
+b1 ""
+b10011 Y"
+b10011 ^"
+12
+#37
+02
+#38
+b10100 E"
+b10100 K"
+b10100 ^"
+b10100 Y"
+12
+#39
+02
+#40
+b10101 E"
+b10101 K"
+1:"
+1="
+b10101 Y"
+b10101 ^"
+12
+1/
+#41
+1>"
+02
+#42
+b10110 E"
+b10110 K"
+1;"
+b10110 ^"
+b10110 Y"
+1@"
+12
+11
+#43
+1?"
+02
+#44
+b10111 E"
+b10111 K"
+b10111 Y"
+b10111 ^"
+12
+#45
+02
+#46
+b11000 E"
+b11000 K"
+b11000 ^"
+b11000 Y"
+12
+#47
+02
+#48
+b11001 E"
+b11001 K"
+b11001 Y"
+b11001 ^"
+12
+#49
+02
+#50
+b11010 E"
+b11010 K"
+b11010 ^"
+b11010 Y"
+12
+#51
+02
+#52
+b11011 E"
+b11011 K"
+b11011 Y"
+b11011 ^"
+12

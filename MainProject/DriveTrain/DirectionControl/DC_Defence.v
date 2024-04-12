@@ -13,11 +13,12 @@ module DC_Defence(
   INDUCTANCE_PAUSE = 3'b110;
     (* DONT_TOUCH = "true" *)
     reg [2:0] STATE = 3'b000;
-    reg Enable_Edge = 1'b0;
+    reg Enable_Edge = 1'b0, enable = 1'b0;
     wire EN;
-    assign EN = Enable & ~Enable_Edge;
+    always@(negedge clk) enable = Enable;
+    assign EN = enable & ~Enable_Edge;
     always @(posedge clk) begin
-        Enable_Edge=Enable;
+        Enable_Edge=enable;
         case(STATE) //STATE Transitions
             IDLE: STATE = (EN)?(TURN_RIGHT):(IDLE);
             TURN_RIGHT: begin
@@ -45,10 +46,10 @@ module DC_Defence(
                     );
             end
             INDUCTANCE: begin
-                    STATE = (Pause)?(INDUCTANCE_PAUSE):(
+                    STATE <= (Pause)?(INDUCTANCE_PAUSE):(
                         (Inductance)?(INDUCTANCE):(IDLE)
                     );
-                    Done = (Inductance)?(1'b1):(1'b0);
+                    Done <= (Inductance)?(1'b0):(1'b1);
             end
             INDUCTANCE_PAUSE: begin
                     STATE = (Pause)?(INDUCTANCE_PAUSE):(INDUCTANCE);

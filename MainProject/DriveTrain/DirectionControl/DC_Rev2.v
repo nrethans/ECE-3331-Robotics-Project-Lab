@@ -29,14 +29,15 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
         TURN_RIGHT=3'b011,
          TURN_LEFT=3'b100;
     (* DONT_TOUCH = "true" *)
-    reg [2:0] STATE=3'b0,PREV_STATE=3'b0;
+    reg [2:0] STATE=3'b000,PREV_STATE=3'b0;
     reg IND_FLG = 1'b1; //IND_FLG Transition to low when inductance counter is done
     reg [28:0] IND_COUNT=29'b0;
-    reg Enable_Edge=1'b0;
+    reg Enable_Edge=1'b0,enable=1'b0;
     wire EN;
-    assign EN = Enable & ~Enable_Edge;
+    always@(negedge clk) enable = Enable;
+    assign EN = enable & ~Enable_Edge;
     always@(posedge clk) begin
-        Enable_Edge=Enable;
+        Enable_Edge=enable;
         if(Ball_Detect) begin
             STATE=IDLE;
             Done = 1'b1;

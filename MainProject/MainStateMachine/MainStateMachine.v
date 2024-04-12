@@ -1,21 +1,16 @@
 /*
     ECE 3331-303 Group 3
     Spring 2024
-
+    
     Name: Nicholas Rethans
     Module Name: Main State Machine
     Submodule of: None
     Dependances: Ball_SM, Goal_SM, Shooter_SM, Defence_SM
     Description: See Miro
-
     Inputs: 
-
     Outputs: 
-
     Notes:
-
 */
-
 module Main_State_Machine(
     input clk, input Attack, input Defense, input Reset, input Ball_SM_Done, 
     input Goal_SM_Done, input Defense_SM_Done, input Shooter_Done,
@@ -29,13 +24,17 @@ module Main_State_Machine(
            DEFENSE = 3'b100;
 
     reg [2:0] STATE = 3'b000;
-    reg AttackEdge = 1'b0, DefenseEdge = 1'b0;
+    reg AttackEdge = 1'b0, DefenseEdge = 1'b0, attack = 1'b0, defense = 1'b0;
     wire ATK, DEF;
-    assign ATK = Attack & ~AttackEdge;
-    assign DEF = Defense & ~DefenseEdge;
+    always@(negedge clk) begin
+        attack <= Attack;
+        defense <= Defense;
+    end
+    assign ATK = attack & ~AttackEdge;
+    assign DEF = defense & ~DefenseEdge;
     always@(posedge clk) begin
-        AttackEdge = Attack;
-        DefenseEdge = Defense;
+        AttackEdge = attack;
+        DefenseEdge = defense;
         if(Reset) STATE = IDLE;
         else begin
             case(STATE) //State Transitions:
