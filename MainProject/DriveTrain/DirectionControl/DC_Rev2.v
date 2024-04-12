@@ -19,6 +19,7 @@
     Notes: 
 
 */
+
 module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_Detect,
                         output reg FWD_A=1'b0,FWD_B=1'b0,BWD_A=1'b0,BWD_B=1'b0,Done=1'b0,
                         output reg [1:0] Duty_SelA=2'b00, Duty_SelB=2'b00);
@@ -27,20 +28,22 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
         INDUCTANCE=3'b010,
         TURN_RIGHT=3'b011,
          TURN_LEFT=3'b100;
-
+    (* DONT_TOUCH = "true" *)
     reg [2:0] STATE=3'b0,PREV_STATE=3'b0;
     reg IND_FLG = 1'b1; //IND_FLG Transition to low when inductance counter is done
     reg [28:0] IND_COUNT=29'b0;
-    reg [1:0] Enable_Edge=2'b00;
+    reg Enable_Edge=1'b0;
+    wire EN;
+    assign EN = Enable & ~Enable_Edge;
     always@(posedge clk) begin
-        Enable_Edge[1]=Enable_Edge[0];
-        Enable_Edge[0]=Enable;
+        Enable_Edge=Enable;
         if(Ball_Detect) begin
             STATE=IDLE;
+            Done = 1'b1;
         end
         else begin
             case(STATE)
-                IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
+                IDLE: STATE = (EN)?(TURN_RIGHT):(IDLE);
                 PAUSE: STATE = (Pause)?(PAUSE):(PREV_STATE);
                 INDUCTANCE: begin
                     STATE = (IND_FLG)?(INDUCTANCE):(
@@ -76,7 +79,6 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0;
                 {Duty_SelA,Duty_SelB}=4'b0;
                 IND_FLG=1'b1;
-                Done=1'b0;
             end
             INDUCTANCE: begin
                 {BWD_A,BWD_B}=2'b11;
@@ -87,7 +89,6 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                     IND_FLG=1'b0;
                     IND_COUNT=29'b0;
                 end
-                Done=1'b0;
             end
             TURN_RIGHT: begin
                 {BWD_A,BWD_B}=2'b00;
@@ -95,7 +96,6 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                 Duty_SelA=2'b10; //75% duty cycle 
                 Duty_SelB=2'b00; //25% duty cycle
                 IND_FLG=1'b1;
-                Done=1'b0;
             end
             TURN_LEFT: begin
                 {BWD_A,BWD_B}=2'b00;
@@ -103,7 +103,6 @@ module BallDirectionControl(input clk,Enable,BallSignal,Pause,Inductance,Ball_De
                 Duty_SelA=2'b00; //25% duty cycle
                 Duty_SelB=2'b10; //75% duty cycle
                 IND_FLG=1'b1;
-                Done=1'b0;
             end
         endcase
     end

@@ -1,7 +1,8 @@
+(* DONT_TOUCH = "yes" *)
 module DC_Defence(
     input clk,Enable,Pause,Inductance,MicrophoneDirection,
     output reg [1:0] DutyCycleA=2'b00, DutyCycleB=2'b00, 
-    output reg FWDA=1'b0,FWDB=1'b0,BWDA=1'b0,BWDB=1'b0,Done=1'b1
+    output reg FWDA=1'b0,FWDB=1'b0,BWDA=1'b0,BWDB=1'b0,Done=1'b0
 );
     parameter IDLE = 3'b000, 
         TURN_RIGHT = 3'b001,
@@ -10,15 +11,15 @@ module DC_Defence(
         LEFT_PAUSE = 3'b100,
         INDUCTANCE = 3'b101,
   INDUCTANCE_PAUSE = 3'b110;
-    
+    (* DONT_TOUCH = "true" *)
     reg [2:0] STATE = 3'b000;
-    reg [1:0] Enable_Edge = 2'b00;
-
+    reg Enable_Edge = 1'b0;
+    wire EN;
+    assign EN = Enable & ~Enable_Edge;
     always @(posedge clk) begin
-        Enable_Edge[1]=Enable_Edge[0];
-        Enable_Edge[0]=Enable;
+        Enable_Edge=Enable;
         case(STATE) //STATE Transitions
-            IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
+            IDLE: STATE = (EN)?(TURN_RIGHT):(IDLE);
             TURN_RIGHT: begin
                     STATE = (Pause)?(RIGHT_PAUSE):(
                         (Inductance)?(INDUCTANCE):(
@@ -47,6 +48,7 @@ module DC_Defence(
                     STATE = (Pause)?(INDUCTANCE_PAUSE):(
                         (Inductance)?(INDUCTANCE):(IDLE)
                     );
+                    Done = (Inductance)?(1'b1):(1'b0);
             end
             INDUCTANCE_PAUSE: begin
                     STATE = (Pause)?(INDUCTANCE_PAUSE):(INDUCTANCE);
@@ -58,7 +60,7 @@ module DC_Defence(
             IDLE: begin
                 {FWDA,FWDB,BWDA,BWDB}=4'b0;
                 {DutyCycleA,DutyCycleB}=4'b0;
-                Done=1'b1;
+                Done=1'b0;
             end
             TURN_RIGHT: begin
                 {BWDA,BWDB}=2'b00;

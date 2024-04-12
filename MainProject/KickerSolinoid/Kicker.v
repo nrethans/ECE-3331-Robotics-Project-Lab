@@ -1,17 +1,20 @@
+
 module Kicker(
     input clk, Enable, 
     output reg Kick = 1'b0, Done = 1'b0
 );
     parameter IDLE = 1'b0, 
               KICK = 1'b1;
+    (* DONT_TOUCH = "true" *)   
     reg STATE = 1'b0;
     reg [3:0] Count = 25'b0; 
-    reg [1:0] EnableEdge = 2'b00;
+    reg EnableEdge = 1'b0;
+    wire EN;
+    assign EN = Enable & ~EnableEdge;
     always @(posedge clk) begin
-        EnableEdge[1]=EnableEdge[0];
-        EnableEdge[0]=Enable;
+        EnableEdge=Enable;
         case(STATE)
-            IDLE: STATE = ((~EnableEdge[1]&EnableEdge[0]))?(KICK):(IDLE);
+            IDLE: STATE = (EN)?(KICK):(IDLE);
             KICK: STATE = (Count[3])?(IDLE):(KICK);
         endcase
         case(STATE)

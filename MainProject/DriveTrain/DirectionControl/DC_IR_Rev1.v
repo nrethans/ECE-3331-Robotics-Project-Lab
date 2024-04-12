@@ -17,6 +17,7 @@
     Notes: Change turning mechanism to turn in place
 
 */
+
 module GoalDirectionControl(
     input clk, Enable, Pause, Inductance, IR_1k, IR_10k,
     output reg FWD_A=1'b0,FWD_B=0,BWD_A=1'b0,BWD_B=0,Done=1'b0,
@@ -28,16 +29,17 @@ module GoalDirectionControl(
         SMALL_LEFT = 3'b011,
              PAUSE = 3'b100,
         INDUCTANCE = 3'b101;
-
+    (* DONT_TOUCH = "true" *)
     reg [2:0] STATE = 3'b000, PREV_STATE = 3'b000;
     reg SR_FLG = 1'b0, SL_FLG = 1'b0, IND_FLG = 1'b0;
     reg [28:0] COUNT = 29'b0;
-    reg [1:0] Enable_Edge=2'b00;
+    reg Enable_Edge=1'b0;
+    wire EN;
+    assign EN = Enable & ~Enable_Edge;
     always@(posedge clk)begin
-        Enable_Edge[1]=Enable_Edge[0];
-        Enable_Edge[0]=Enable;
+        Enable_Edge=Enable;
         case(STATE)
-            IDLE: STATE = ((~Enable_Edge[1]&Enable_Edge[0]))?(TURN_RIGHT):(IDLE);
+            IDLE: STATE = (EN)?(TURN_RIGHT):(IDLE);
             TURN_RIGHT: begin
                 PREV_STATE=TURN_RIGHT;
                 STATE = (Pause)?(PAUSE):(
