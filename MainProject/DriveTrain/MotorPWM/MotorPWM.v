@@ -42,7 +42,7 @@ module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignal);
                 else PulseSignal = 1'b0;
             end
             2'b11: PulseSignal = 1'b1;
-            default: PulseSignal = 2'b00;
+            default: PulseSignal = 1'b0;
         endcase
     end
 endmodule 
