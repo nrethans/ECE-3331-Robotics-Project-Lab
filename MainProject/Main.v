@@ -1,18 +1,18 @@
-`include "MainProject/MainStateMachine/MainStateMachine.v"
-`include "MainProject/DriveTrain/DirectionControl/DC_Rev2.v"
-`include "MainProject/DriveTrain/DirectionControl/DC_IR_Rev1.v"
-`include "MainProject/DriveTrain/DirectionControl/DC_Defence.v"
-`include "MainProject/KickerSolinoid/Kicker.v"
-`include "MainProject/Sensors/Microphone/MicrophoneFFs.v"
-`include "MainProject/Sensors/IR/1_kHz_Frequency_Counter.v"
-`include "MainProject/Sensors/IR/10_kHz_Frequency_Counter.v"
-`include "MainProject/DriveTrain/DisableHandler/DisableHandler.v"
-`include "MainProject/DriveTrain/MotorPWM/MotorPWM.v"
-`include "MainProject/DriveTrain/PWMEncoder/PWMEncoder.v"
+//`include "MainProject/MainStateMachine/MainStateMachine.v"
+//`include "MainProject/DriveTrain/DirectionControl/DC_Rev2.v"
+//`include "MainProject/DriveTrain/DirectionControl/DC_IR_Rev1.v"
+//`include "MainProject/DriveTrain/DirectionControl/DC_Defence.v"
+//`include "MainProject/KickerSolinoid/Kicker.v"
+//`include "MainProject/Sensors/Microphone/MicrophoneFFs.v"
+//`include "MainProject/Sensors/IR/1_kHz_Frequency_Counter.v"
+//`include "MainProject/Sensors/IR/10_kHz_Frequency_Counter.v"
+//`include "MainProject/DriveTrain/DisableHandler/DisableHandler.v"
+//`include "MainProject/DriveTrain/MotorPWM/MotorPWM.v"
+//`include "MainProject/DriveTrain/PWMEncoder/PWMEncoder.v"
 module Main(
     input Defense, Attack, Reset, DisableA, DisableB, Inductance_Sense, IR_Ball_Detect,
           LeftMic, RightMic, IR_1K_Reciever, IR_10K_Reciever, clk,
-    output Enable, FWDA, BWDA, FWDB, BWDB, Kick
+    output Enable, FWDA, BWDA, FWDB, BWDB, Kick, led
 );
     //Wires:
     wire Ball_Detection_SM_EN, Goal_Detection_SM_EN, Defense_SM_EN, Kicker_EN;
@@ -36,6 +36,7 @@ module Main(
     //Shooter:
     Kicker U4(clk, Kicker_EN, Kick, Kicker_Done);
     //Signal Handlers:
+    assign led = Kick;
     MicFFs U5(clk, RightMic, LeftMic, Direction);
     FrequencyCounter_1K U6A(clk, IR_1K_Reciever, 1'b1, 1'b0, IR_1K);
     FrequencyCounter_10K U6B(clk, IR_10K_Reciever, 1'b1, 1'b0, IR_10K);

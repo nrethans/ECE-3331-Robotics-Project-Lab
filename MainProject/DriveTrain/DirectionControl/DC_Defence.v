@@ -61,42 +61,35 @@ module DC_Defence(
             IDLE: begin
                 {FWDA,FWDB,BWDA,BWDB}=4'b0;
                 {DutyCycleA,DutyCycleB}=4'b0;
-                Done=1'b0;
             end
             TURN_RIGHT: begin
                 {BWDA,BWDB}=2'b00;
                 {FWDA,FWDB}=2'b11;
                 DutyCycleA=2'b10; //75% duty cycle 
                 DutyCycleB=2'b00; //25% duty cycle
-                Done=1'b0;
             end
             TURN_LEFT: begin
                 {BWDA,BWDB}=2'b00;
                 {FWDA,FWDB}=2'b11;
                 DutyCycleA=2'b00; //25% duty cycle
                 DutyCycleB=2'b10; //75% duty cycle
-                Done=1'b0;
             end
             RIGHT_PAUSE: begin
                 {FWDA,FWDB,BWDA,BWDB}=4'b0;
                 {DutyCycleA,DutyCycleB}=4'b0;
-                Done=1'b0;
             end 
             LEFT_PAUSE: begin
                 {FWDA,FWDB,BWDA,BWDB}=4'b0;
                 {DutyCycleA,DutyCycleB}=4'b0;
-                Done=1'b0;
             end
             INDUCTANCE: begin
                 {BWDA,BWDB}=2'b11;
                 {FWDA,FWDB}=2'b00;
                 {DutyCycleA,DutyCycleB}=4'b1111;
-                Done=1'b0;
             end
             INDUCTANCE_PAUSE: begin
                 {FWDA,FWDB,BWDA,BWDB}=4'b0;
                 {DutyCycleA,DutyCycleB}=4'b0;
-                Done=1'b0;
             end
         endcase
     end
