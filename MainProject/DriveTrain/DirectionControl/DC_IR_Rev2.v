@@ -20,7 +20,7 @@
 
 module GoalDirectionControl(
     input clk, Enable, Pause, Inductance, IR_1k, IR_10k,
-    output reg FWD_A=1'b0,FWD_B=0,BWD_A=1'b0,BWD_B=0,Done=1'b0,
+    output reg FWD_A=1'b0,FWD_B=1'b0, BWD_A=1'b0,BWD_B=1'b0,Done=1'b0,
     output reg [1:0] Duty_SelA = 2'b00, Duty_SelB =2'b00
 );
     parameter IDLE = 3'b000,
@@ -97,20 +97,20 @@ module GoalDirectionControl(
             end
             SMALL_RIGHT: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b1001;
-                {Duty_SelA,Duty_SelB}=4'b1010;
+                {Duty_SelA,Duty_SelB}=4'b1111;
                 {SL_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd25_000_000)begin
+                if(COUNT==29'd400_000_000)begin
                     SR_FLG=1'b0;
                     COUNT=29'b0;
                 end
             end
             SMALL_LEFT: begin
                 {FWD_A,FWD_B,BWD_A,BWD_B}=4'b0110;
-                {Duty_SelA,Duty_SelB}=4'b0101;
+                {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd25_000_000)begin
+                if(COUNT==29'd400_000_000)begin
                     SL_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -120,7 +120,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b0101;
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd50_000_000)begin
+                if(COUNT==29'd400_000_000)begin
                     COUNT=29'b0;
                     STATE=IDLE;
                     FWD_FLG = 1'b0;
@@ -138,7 +138,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,SL_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd100_000_000) begin //200,000,000 = 2 seconds
+                if(COUNT==29'd50_000_000) begin //200,000,000 = 2 seconds
                     IND_FLG=1'b0;
                     COUNT=29'b0;
                 end

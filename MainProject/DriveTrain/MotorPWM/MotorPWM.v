@@ -15,7 +15,7 @@
     Notes: This PWM frequency is 8khz 
        
 */
-module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignal);
+module MotorPWM(input clk, input [1:0] DutyCycle, output reg PulseSignal=1'b0);
     reg [13:0] count = 14'b0000000000000;
     parameter QuarterDuty = 14'd5000, //5,000
                  HalfDuty = 14'b01100001101010, //6250
