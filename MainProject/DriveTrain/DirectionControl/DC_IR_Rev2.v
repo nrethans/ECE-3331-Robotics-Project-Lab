@@ -100,7 +100,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SL_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd400_000_000)begin
+                if(COUNT>=29'd400_000_000)begin
                     SR_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -110,7 +110,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd400_000_000)begin
+                if(COUNT>=29'd400_000_000)begin
                     SL_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -120,7 +120,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b0101;
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd400_000_000)begin
+                if(COUNT>=29'd400_000_000)begin
                     COUNT=29'b0;
                     STATE=IDLE;
                     FWD_FLG = 1'b0;
