@@ -52,11 +52,19 @@ module GoalDirectionControl(
                 );
             end
             SMALL_RIGHT: begin
-                STATE = (SR_FLG)?(SMALL_RIGHT):(IDLE); 
+                STATE = (Pause)?(PAUSE):(
+                    (Inductance)?(INDUCTANCE):(
+                       (SR_FLG)?(SMALL_RIGHT):(IDLE)  
+                    )
+                );
                 PREV_STATE = SMALL_RIGHT;
             end
             SMALL_LEFT: begin
-                STATE = (SL_FLG)?(SMALL_LEFT):(IDLE); 
+                STATE = (Pause)?(PAUSE):(
+                    (Inductance)?(INDUCTANCE):(
+                        (SL_FLG)?(SMALL_LEFT):(IDLE) 
+                    )
+                );
                 PREV_STATE = SMALL_LEFT;
             end
             PAUSE: STATE = (Pause)?(PAUSE):(PREV_STATE);

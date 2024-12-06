@@ -54,34 +54,35 @@ module GoalDirectionControl(
                 );
             end
             SMALL_RIGHT: begin
+                PREV_STATE = SMALL_RIGHT;
                 STATE = (Pause)?(PAUSE):(
                     (Inductance)?(INDUCTANCE):(
                         (SR_FLG)?(SMALL_RIGHT):(SMALL_FORWARD)
                     )
                 );
-                PREV_STATE = SMALL_RIGHT;
             end
             SMALL_LEFT: begin
+                PREV_STATE = SMALL_LEFT;
                 STATE = (Pause)?(PAUSE):(
                     (Inductance)?(INDUCTANCE):(
                         (SL_FLG)?(SMALL_LEFT):(SMALL_FORWARD) 
                     )
                 );
-                PREV_STATE = SMALL_LEFT;
             end
             PAUSE: STATE = (Pause)?(PAUSE):(PREV_STATE);
             INDUCTANCE: begin
+                PREV_STATE = SMALL_LEFT;
                 STATE = (IND_FLG)?(INDUCTANCE):(
                     (Inductance)?(INDUCTANCE):(PREV_STATE)
                 );
             end
             SMALL_FORWARD: begin
+                PREV_STATE = SMALL_FORWARD;
                 STATE = (Pause)?(PAUSE):(
                     (Inductance)?(INDUCTANCE):(
                         (FWD_FLG)?(SMALL_FORWARD):(IDLE)
                     )
                 );
-                PREV_STATE = SMALL_FORWARD;
             end
         endcase
         case(STATE)
@@ -100,7 +101,11 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SL_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
+<<<<<<< Updated upstream
                 if(COUNT>=29'd400_000_000)begin
+=======
+                if(COUNT>=29'd400000000)begin
+>>>>>>> Stashed changes
                     SR_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -110,7 +115,11 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,IND_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
+<<<<<<< Updated upstream
                 if(COUNT>=29'd400_000_000)begin
+=======
+                if(COUNT>=29'd400000000)begin
+>>>>>>> Stashed changes
                     SL_FLG=1'b0;
                     COUNT=29'b0;
                 end
@@ -120,7 +129,11 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b0101;
                 {SR_FLG,SL_FLG,IND_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
+<<<<<<< Updated upstream
                 if(COUNT>=29'd400_000_000)begin
+=======
+                if(COUNT>=29'd400000000)begin
+>>>>>>> Stashed changes
                     COUNT=29'b0;
                     STATE=IDLE;
                     FWD_FLG = 1'b0;
@@ -138,7 +151,7 @@ module GoalDirectionControl(
                 {Duty_SelA,Duty_SelB}=4'b1111;
                 {SR_FLG,SL_FLG,FWD_FLG,Done}=4'b1110;
                 COUNT=COUNT+1;
-                if(COUNT==29'd50_000_000) begin //200,000,000 = 2 seconds
+                if(COUNT>=29'd50000000) begin //200,000,000 = 2 seconds
                     IND_FLG=1'b0;
                     COUNT=29'b0;
                 end

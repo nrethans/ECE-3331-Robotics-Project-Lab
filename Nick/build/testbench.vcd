@@ -1,0 +1,980 @@
+$date
+	Fri Dec 06 17:22:07 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module testbench $end
+$var wire 7 ! seg [6:0] $end
+$var wire 1 " s3 $end
+$var wire 1 # s2 $end
+$var wire 4 $ an [3:0] $end
+$var wire 1 % RIN2 $end
+$var wire 1 & RIN1 $end
+$var wire 1 ' LIN2 $end
+$var wire 1 ( LIN1 $end
+$var wire 16 ) LED [15:0] $end
+$var wire 1 * ENAR $end
+$var wire 1 + ENAL $end
+$var reg 1 , BoxDetect $end
+$var reg 1 - Button $end
+$var reg 1 . ColorSignal $end
+$var reg 1 / ThinkerStart $end
+$var reg 1 0 clk $end
+$var reg 1 1 ir_signal $end
+$var reg 1 2 rst $end
+$var reg 3 3 sensor_input [2:0] $end
+$scope module dut $end
+$var wire 1 , BoxDetect $end
+$var wire 1 - Button $end
+$var wire 1 . ColorSignal $end
+$var wire 1 4 PWMGo $end
+$var wire 3 5 RouteRequest [2:0] $end
+$var wire 1 / ThinkerStart $end
+$var wire 1 0 clk $end
+$var wire 1 1 ir_signal $end
+$var wire 4 6 routePending [3:0] $end
+$var wire 1 2 rst $end
+$var wire 3 7 sensor_input [2:0] $end
+$var wire 3 8 state [2:0] $end
+$var wire 4 9 testwire [3:0] $end
+$var wire 7 : seg [6:0] $end
+$var wire 1 " s3 $end
+$var wire 1 # s2 $end
+$var wire 4 ; an [3:0] $end
+$var wire 2 < TargetPos [1:0] $end
+$var wire 2 = TargetColor [1:0] $end
+$var wire 1 % RIN2 $end
+$var wire 1 & RIN1 $end
+$var wire 1 ' LIN2 $end
+$var wire 1 ( LIN1 $end
+$var wire 16 > LED [15:0] $end
+$var wire 1 * ENAR $end
+$var wire 1 + ENAL $end
+$var parameter 13 ? BLUE_THRESHOLD $end
+$var parameter 32 @ CLAW_CLOSE $end
+$var parameter 32 A CLAW_DROP $end
+$var parameter 32 B CLAW_Neutral $end
+$var parameter 32 C CLAW_OPEN $end
+$var parameter 32 D CLAW_RAISE $end
+$var parameter 13 E CLEAR_THRESHOLD $end
+$var parameter 13 F CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 G CONTROL_BLUE $end
+$var parameter 32 H CONTROL_CHECK_BLUE $end
+$var parameter 32 I CONTROL_CHECK_CLEAR $end
+$var parameter 32 J CONTROL_CHECK_GREEN $end
+$var parameter 32 K CONTROL_CHECK_RED $end
+$var parameter 32 L CONTROL_CLEAR $end
+$var parameter 32 M CONTROL_DONE $end
+$var parameter 32 N CONTROL_FOUND $end
+$var parameter 32 O CONTROL_GREEN $end
+$var parameter 32 P CONTROL_RED $end
+$var parameter 32 Q CONTROL_START $end
+$var parameter 32 R DRIVE_180 $end
+$var parameter 32 S DRIVE_InterLeft $end
+$var parameter 32 T DRIVE_InterRight $end
+$var parameter 32 U DRIVE_InterStraight $end
+$var parameter 32 V DRIVE_Reverse $end
+$var parameter 32 W DRIVE_STOP $end
+$var parameter 32 X DRIVE_Straight $end
+$var parameter 32 Y FMM_GO $end
+$var parameter 32 Z FMM_IDLE $end
+$var parameter 32 [ FMM_PERIOD $end
+$var parameter 32 \ FMM_SAT $end
+$var parameter 32 ] FMM_TEST $end
+$var parameter 32 ^ FQ_Blue $end
+$var parameter 32 _ FQ_Clear $end
+$var parameter 32 ` FQ_Green $end
+$var parameter 32 a FQ_Red $end
+$var parameter 13 b GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 c GREEN_THRESHOLD $end
+$var parameter 13 d RED_THRESHOLD $end
+$scope module Motorboat $end
+$var wire 1 4 PWMGo $end
+$var wire 3 e RouteRequest [2:0] $end
+$var wire 1 0 clk $end
+$var wire 1 , ir_box $end
+$var wire 1 f ir_desk $end
+$var wire 3 g sensor_input [2:0] $end
+$var wire 1 h ir_desk_detected $end
+$var wire 1 i ir_box_detected $end
+$var wire 1 * ENAR $end
+$var wire 1 + ENAL $end
+$var parameter 3 j DEGREE_180 $end
+$var parameter 3 k FWD $end
+$var parameter 3 l IDLE $end
+$var parameter 3 m INTERSECTION $end
+$var parameter 3 n LEFT_TURN $end
+$var parameter 3 o RIGHT_TURN $end
+$var parameter 3 p ROUTE_180 $end
+$var parameter 3 q ROUTE_CLAW_CLOSE $end
+$var parameter 3 r ROUTE_CLAW_OPEN $end
+$var parameter 3 s ROUTE_FWD $end
+$var parameter 3 t ROUTE_INTERSECTION $end
+$var parameter 3 u ROUTE_LEFT_TURN $end
+$var parameter 3 v ROUTE_REQUEST $end
+$var parameter 3 w ROUTE_RIGHT_TURN $end
+$var parameter 3 x ROUTE_STOP $end
+$var parameter 3 y STRAIGHT $end
+$var reg 1 ( LIN1 $end
+$var reg 1 ' LIN2 $end
+$var reg 1 & RIN1 $end
+$var reg 1 % RIN2 $end
+$var reg 1 z Taskdone $end
+$var reg 2 { clawState [1:0] $end
+$var reg 2 | gearPinionState [1:0] $end
+$var reg 4 } routePending [3:0] $end
+$var reg 3 ~ state [2:0] $end
+$var reg 32 !" timer [31:0] $end
+$var reg 20 "" widthL [19:0] $end
+$var reg 20 #" widthR [19:0] $end
+$scope module ips_inst $end
+$var wire 1 0 clk $end
+$var wire 1 $" signalL $end
+$var wire 1 %" signalM $end
+$var wire 1 &" signalR $end
+$var reg 1 '" LED6 $end
+$var reg 1 (" LED7 $end
+$var reg 1 )" LED8 $end
+$upscope $end
+$scope module ir_box_inst $end
+$var wire 1 0 clk $end
+$var wire 1 *" enable $end
+$var wire 1 , in $end
+$var reg 1 i out $end
+$var reg 1 +" trigger $end
+$upscope $end
+$scope module ir_desk_inst $end
+$var wire 1 0 clk $end
+$var wire 1 ," enable $end
+$var wire 1 f in $end
+$var reg 1 h out $end
+$var reg 1 -" trigger $end
+$upscope $end
+$scope module pwm_inst $end
+$var wire 1 + ENAL $end
+$var wire 1 * ENAR $end
+$var wire 1 0 clk $end
+$var wire 20 ." widthL [19:0] $end
+$var wire 20 /" widthR [19:0] $end
+$var reg 20 0" counter [19:0] $end
+$var reg 1 1" temp_ENAL $end
+$var reg 1 2" temp_ENAR $end
+$upscope $end
+$scope module servo_control $end
+$var wire 2 3" clawState [1:0] $end
+$var wire 1 0 clk $end
+$var wire 2 4" gearPinionState [1:0] $end
+$var wire 1 5" gearPinionPS $end
+$var wire 1 6" clawPS $end
+$var parameter 22 7" ClawClose $end
+$var parameter 22 8" ClawNeutral $end
+$var parameter 22 9" ClawOpen $end
+$var parameter 22 :" GearLower $end
+$var parameter 22 ;" GearNeutral $end
+$var parameter 22 <" GearRaise $end
+$var reg 22 =" clawDutyCycle [21:0] $end
+$var reg 22 >" gearDutyCycle [21:0] $end
+$scope module clawPWM $end
+$var wire 22 ?" DutyCycle [21:0] $end
+$var wire 1 0 clk $end
+$var parameter 22 @" PWM_PERIOD $end
+$var reg 1 6" PS $end
+$var reg 22 A" count [21:0] $end
+$upscope $end
+$scope module gearPinionPWM $end
+$var wire 22 B" DutyCycle [21:0] $end
+$var wire 1 0 clk $end
+$var parameter 22 C" PWM_PERIOD $end
+$var reg 1 5" PS $end
+$var reg 22 D" count [21:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module Thinker $end
+$var wire 1 . ColorSignal $end
+$var wire 1 / Start $end
+$var wire 1 0 clk $end
+$var wire 1 1 ir_signal $end
+$var wire 1 2 rst $end
+$var wire 7 E" seg [6:0] $end
+$var wire 1 " s3 $end
+$var wire 1 # s2 $end
+$var wire 2 F" color_detected [1:0] $end
+$var wire 4 G" an [3:0] $end
+$var wire 2 H" Pos3 [1:0] $end
+$var wire 2 I" Pos2 [1:0] $end
+$var wire 2 J" Pos1 [1:0] $end
+$var wire 1 K" LED3 $end
+$var wire 1 L" LED2 $end
+$var wire 1 M" LED1 $end
+$var wire 1 N" ColorDone $end
+$var parameter 13 O" BLUE_THRESHOLD $end
+$var parameter 32 P" CLAW_CLOSE $end
+$var parameter 32 Q" CLAW_DROP $end
+$var parameter 32 R" CLAW_Neutral $end
+$var parameter 32 S" CLAW_OPEN $end
+$var parameter 32 T" CLAW_RAISE $end
+$var parameter 13 U" CLEAR_THRESHOLD $end
+$var parameter 13 V" CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 W" COLORWAIT $end
+$var parameter 32 X" CONTROL_BLUE $end
+$var parameter 32 Y" CONTROL_CHECK_BLUE $end
+$var parameter 32 Z" CONTROL_CHECK_CLEAR $end
+$var parameter 32 [" CONTROL_CHECK_GREEN $end
+$var parameter 32 \" CONTROL_CHECK_RED $end
+$var parameter 32 ]" CONTROL_CLEAR $end
+$var parameter 32 ^" CONTROL_DONE $end
+$var parameter 32 _" CONTROL_FOUND $end
+$var parameter 32 `" CONTROL_GREEN $end
+$var parameter 32 a" CONTROL_RED $end
+$var parameter 32 b" CONTROL_START $end
+$var parameter 32 c" DONE $end
+$var parameter 32 d" DRIVE_180 $end
+$var parameter 32 e" DRIVE_InterLeft $end
+$var parameter 32 f" DRIVE_InterRight $end
+$var parameter 32 g" DRIVE_InterStraight $end
+$var parameter 32 h" DRIVE_Reverse $end
+$var parameter 32 i" DRIVE_STOP $end
+$var parameter 32 j" DRIVE_Straight $end
+$var parameter 32 k" FINDPOS $end
+$var parameter 32 l" FMM_GO $end
+$var parameter 32 m" FMM_IDLE $end
+$var parameter 32 n" FMM_PERIOD $end
+$var parameter 32 o" FMM_SAT $end
+$var parameter 32 p" FMM_TEST $end
+$var parameter 32 q" FQ_Blue $end
+$var parameter 32 r" FQ_Clear $end
+$var parameter 32 s" FQ_Green $end
+$var parameter 32 t" FQ_Red $end
+$var parameter 13 u" GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 v" GREEN_THRESHOLD $end
+$var parameter 32 w" IRWait $end
+$var parameter 32 x" Idle $end
+$var parameter 32 y" PWM_ENABLE $end
+$var parameter 13 z" RED_THRESHOLD $end
+$var reg 1 {" Done $end
+$var reg 1 |" NextState $end
+$var reg 1 }" PWMGo $end
+$var reg 3 ~" RouteRequest [2:0] $end
+$var reg 2 !# TargetColor [1:0] $end
+$var reg 2 "# TargetPos [1:0] $end
+$var reg 4 ## state [3:0] $end
+$scope module Colortop1 $end
+$var wire 1 0 clk $end
+$var wire 1 2 rst $end
+$var wire 1 . signal $end
+$var wire 7 $# seg [6:0] $end
+$var wire 1 " s3 $end
+$var wire 1 # s2 $end
+$var wire 4 %# an [3:0] $end
+$var wire 1 &# Go $end
+$var wire 13 '# FqIn [12:0] $end
+$var wire 13 (# FQRed [12:0] $end
+$var wire 13 )# FQGreen [12:0] $end
+$var wire 13 *# FQClear [12:0] $end
+$var wire 13 +# FQBlue [12:0] $end
+$var wire 1 ,# FMMdone $end
+$var wire 1 N" Done $end
+$var wire 2 -# ColorIn [1:0] $end
+$var wire 2 .# Color3 [1:0] $end
+$var wire 2 /# Color2 [1:0] $end
+$var wire 2 0# Color1 [1:0] $end
+$var wire 1 1# Color $end
+$var parameter 13 2# BLUE_THRESHOLD $end
+$var parameter 32 3# CLAW_CLOSE $end
+$var parameter 32 4# CLAW_DROP $end
+$var parameter 32 5# CLAW_Neutral $end
+$var parameter 32 6# CLAW_OPEN $end
+$var parameter 32 7# CLAW_RAISE $end
+$var parameter 13 8# CLEAR_THRESHOLD $end
+$var parameter 13 9# CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 :# CONTROL_BLUE $end
+$var parameter 32 ;# CONTROL_CHECK_BLUE $end
+$var parameter 32 <# CONTROL_CHECK_CLEAR $end
+$var parameter 32 =# CONTROL_CHECK_GREEN $end
+$var parameter 32 ># CONTROL_CHECK_RED $end
+$var parameter 32 ?# CONTROL_CLEAR $end
+$var parameter 32 @# CONTROL_DONE $end
+$var parameter 32 A# CONTROL_FOUND $end
+$var parameter 32 B# CONTROL_GREEN $end
+$var parameter 32 C# CONTROL_RED $end
+$var parameter 32 D# CONTROL_START $end
+$var parameter 32 E# DRIVE_180 $end
+$var parameter 32 F# DRIVE_InterLeft $end
+$var parameter 32 G# DRIVE_InterRight $end
+$var parameter 32 H# DRIVE_InterStraight $end
+$var parameter 32 I# DRIVE_Reverse $end
+$var parameter 32 J# DRIVE_STOP $end
+$var parameter 32 K# DRIVE_Straight $end
+$var parameter 32 L# FMM_GO $end
+$var parameter 32 M# FMM_IDLE $end
+$var parameter 32 N# FMM_PERIOD $end
+$var parameter 32 O# FMM_SAT $end
+$var parameter 32 P# FMM_TEST $end
+$var parameter 32 Q# FQ_Blue $end
+$var parameter 32 R# FQ_Clear $end
+$var parameter 32 S# FQ_Green $end
+$var parameter 32 T# FQ_Red $end
+$var parameter 13 U# GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 V# GREEN_THRESHOLD $end
+$var parameter 13 W# RED_THRESHOLD $end
+$var reg 14 X# number [13:0] $end
+$var reg 27 Y# timer [26:0] $end
+$scope module Display $end
+$var wire 1 0 clk $end
+$var wire 14 Z# number [13:0] $end
+$var wire 1 2 rst $end
+$var parameter 32 [# PERIOD $end
+$var parameter 32 \# TEST_TICK $end
+$var reg 4 ]# an [3:0] $end
+$var reg 21 ^# refresh_counter [20:0] $end
+$var reg 7 _# seg [6:0] $end
+$scope module dig0 $end
+$var wire 4 `# digit [3:0] $end
+$var reg 7 a# seg [6:0] $end
+$upscope $end
+$scope module dig1 $end
+$var wire 4 b# digit [3:0] $end
+$var reg 7 c# seg [6:0] $end
+$upscope $end
+$scope module dig2 $end
+$var wire 4 d# digit [3:0] $end
+$var reg 7 e# seg [6:0] $end
+$upscope $end
+$scope module dig3 $end
+$var wire 4 f# digit [3:0] $end
+$var reg 7 g# seg [6:0] $end
+$upscope $end
+$upscope $end
+$scope module FMM $end
+$var wire 1 0 clk $end
+$var wire 1 2 rst $end
+$var wire 1 . signal $end
+$var wire 1 &# Go $end
+$var parameter 13 h# BLUE_THRESHOLD $end
+$var parameter 32 i# CLAW_CLOSE $end
+$var parameter 32 j# CLAW_DROP $end
+$var parameter 32 k# CLAW_Neutral $end
+$var parameter 32 l# CLAW_OPEN $end
+$var parameter 32 m# CLAW_RAISE $end
+$var parameter 13 n# CLEAR_THRESHOLD $end
+$var parameter 13 o# CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 p# CONTROL_BLUE $end
+$var parameter 32 q# CONTROL_CHECK_BLUE $end
+$var parameter 32 r# CONTROL_CHECK_CLEAR $end
+$var parameter 32 s# CONTROL_CHECK_GREEN $end
+$var parameter 32 t# CONTROL_CHECK_RED $end
+$var parameter 32 u# CONTROL_CLEAR $end
+$var parameter 32 v# CONTROL_DONE $end
+$var parameter 32 w# CONTROL_FOUND $end
+$var parameter 32 x# CONTROL_GREEN $end
+$var parameter 32 y# CONTROL_RED $end
+$var parameter 32 z# CONTROL_START $end
+$var parameter 32 {# DRIVE_180 $end
+$var parameter 32 |# DRIVE_InterLeft $end
+$var parameter 32 }# DRIVE_InterRight $end
+$var parameter 32 ~# DRIVE_InterStraight $end
+$var parameter 32 !$ DRIVE_Reverse $end
+$var parameter 32 "$ DRIVE_STOP $end
+$var parameter 32 #$ DRIVE_Straight $end
+$var parameter 32 $$ FMM_GO $end
+$var parameter 32 %$ FMM_IDLE $end
+$var parameter 32 &$ FMM_PERIOD $end
+$var parameter 32 '$ FMM_SAT $end
+$var parameter 32 ($ FMM_TEST $end
+$var parameter 32 )$ FQ_Blue $end
+$var parameter 32 *$ FQ_Clear $end
+$var parameter 32 +$ FQ_Green $end
+$var parameter 32 ,$ FQ_Red $end
+$var parameter 13 -$ GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 .$ GREEN_THRESHOLD $end
+$var parameter 13 /$ RED_THRESHOLD $end
+$var reg 1 ,# Done $end
+$var reg 1 0$ State $end
+$var reg 21 1$ counter [20:0] $end
+$var reg 13 2$ frequency [12:0] $end
+$var reg 13 3$ frequency_internal [12:0] $end
+$var reg 2 4$ shiftReg [1:0] $end
+$upscope $end
+$scope module controller1 $end
+$var wire 2 5$ ColorOut1 [1:0] $end
+$var wire 2 6$ ColorOut2 [1:0] $end
+$var wire 2 7$ ColorOut3 [1:0] $end
+$var wire 1 ,# FMMdone $end
+$var wire 13 8$ FreqBlue [12:0] $end
+$var wire 13 9$ FreqClear [12:0] $end
+$var wire 13 :$ FreqGreen [12:0] $end
+$var wire 13 ;$ FreqIn [12:0] $end
+$var wire 13 <$ FreqRed [12:0] $end
+$var wire 1 0 clk $end
+$var wire 1 2 rst $end
+$var wire 1 1# isColor $end
+$var wire 2 =$ ColorIn [1:0] $end
+$var parameter 13 >$ BLUE_THRESHOLD $end
+$var parameter 32 ?$ CLAW_CLOSE $end
+$var parameter 32 @$ CLAW_DROP $end
+$var parameter 32 A$ CLAW_Neutral $end
+$var parameter 32 B$ CLAW_OPEN $end
+$var parameter 32 C$ CLAW_RAISE $end
+$var parameter 13 D$ CLEAR_THRESHOLD $end
+$var parameter 13 E$ CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 F$ CONTROL_BLUE $end
+$var parameter 32 G$ CONTROL_CHECK_BLUE $end
+$var parameter 32 H$ CONTROL_CHECK_CLEAR $end
+$var parameter 32 I$ CONTROL_CHECK_GREEN $end
+$var parameter 32 J$ CONTROL_CHECK_RED $end
+$var parameter 32 K$ CONTROL_CLEAR $end
+$var parameter 32 L$ CONTROL_DONE $end
+$var parameter 32 M$ CONTROL_FOUND $end
+$var parameter 32 N$ CONTROL_GREEN $end
+$var parameter 32 O$ CONTROL_RED $end
+$var parameter 32 P$ CONTROL_START $end
+$var parameter 32 Q$ DRIVE_180 $end
+$var parameter 32 R$ DRIVE_InterLeft $end
+$var parameter 32 S$ DRIVE_InterRight $end
+$var parameter 32 T$ DRIVE_InterStraight $end
+$var parameter 32 U$ DRIVE_Reverse $end
+$var parameter 32 V$ DRIVE_STOP $end
+$var parameter 32 W$ DRIVE_Straight $end
+$var parameter 32 X$ FMM_GO $end
+$var parameter 32 Y$ FMM_IDLE $end
+$var parameter 32 Z$ FMM_PERIOD $end
+$var parameter 32 [$ FMM_SAT $end
+$var parameter 32 \$ FMM_TEST $end
+$var parameter 32 ]$ FQ_Blue $end
+$var parameter 32 ^$ FQ_Clear $end
+$var parameter 32 _$ FQ_Green $end
+$var parameter 32 `$ FQ_Red $end
+$var parameter 13 a$ GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 b$ GREEN_THRESHOLD $end
+$var parameter 13 c$ RED_THRESHOLD $end
+$var reg 2 d$ ColorNum [1:0] $end
+$var reg 1 N" Done $end
+$var reg 1 &# Go $end
+$var reg 4 e$ NextState [3:0] $end
+$var reg 4 f$ State [3:0] $end
+$var reg 1 # s2 $end
+$var reg 1 " s3 $end
+$upscope $end
+$scope module decision1 $end
+$var wire 13 g$ FQBlue [12:0] $end
+$var wire 13 h$ FQClear [12:0] $end
+$var wire 13 i$ FQGreen [12:0] $end
+$var wire 13 j$ FQRed [12:0] $end
+$var parameter 13 k$ BLUE_THRESHOLD $end
+$var parameter 32 l$ CLAW_CLOSE $end
+$var parameter 32 m$ CLAW_DROP $end
+$var parameter 32 n$ CLAW_Neutral $end
+$var parameter 32 o$ CLAW_OPEN $end
+$var parameter 32 p$ CLAW_RAISE $end
+$var parameter 13 q$ CLEAR_THRESHOLD $end
+$var parameter 13 r$ CLEAR_UPPER_THRESHOLD $end
+$var parameter 32 s$ CONTROL_BLUE $end
+$var parameter 32 t$ CONTROL_CHECK_BLUE $end
+$var parameter 32 u$ CONTROL_CHECK_CLEAR $end
+$var parameter 32 v$ CONTROL_CHECK_GREEN $end
+$var parameter 32 w$ CONTROL_CHECK_RED $end
+$var parameter 32 x$ CONTROL_CLEAR $end
+$var parameter 32 y$ CONTROL_DONE $end
+$var parameter 32 z$ CONTROL_FOUND $end
+$var parameter 32 {$ CONTROL_GREEN $end
+$var parameter 32 |$ CONTROL_RED $end
+$var parameter 32 }$ CONTROL_START $end
+$var parameter 32 ~$ DRIVE_180 $end
+$var parameter 32 !% DRIVE_InterLeft $end
+$var parameter 32 "% DRIVE_InterRight $end
+$var parameter 32 #% DRIVE_InterStraight $end
+$var parameter 32 $% DRIVE_Reverse $end
+$var parameter 32 %% DRIVE_STOP $end
+$var parameter 32 &% DRIVE_Straight $end
+$var parameter 32 '% FMM_GO $end
+$var parameter 32 (% FMM_IDLE $end
+$var parameter 32 )% FMM_PERIOD $end
+$var parameter 32 *% FMM_SAT $end
+$var parameter 32 +% FMM_TEST $end
+$var parameter 32 ,% FQ_Blue $end
+$var parameter 32 -% FQ_Clear $end
+$var parameter 32 .% FQ_Green $end
+$var parameter 32 /% FQ_Red $end
+$var parameter 13 0% GREEN_NOTRED_THRESHOLD $end
+$var parameter 13 1% GREEN_THRESHOLD $end
+$var parameter 13 2% RED_THRESHOLD $end
+$var reg 2 3% Color [1:0] $end
+$var reg 1 1# isColor $end
+$upscope $end
+$upscope $end
+$scope module IR_module $end
+$var wire 1 0 clk $end
+$var wire 1 1 ir_signal $end
+$var parameter 32 4% BLUE_MAX_THRESHOLD $end
+$var parameter 32 5% BLUE_MIN_THRESHOLD $end
+$var parameter 32 6% GREEN_MAX_THRESHOLD $end
+$var parameter 32 7% GREEN_MIN_THRESHOLD $end
+$var parameter 32 8% RED_MAX_THRESHOLD $end
+$var parameter 32 9% RED_MIN_THRESHOLD $end
+$var parameter 32 :% TIME_INTERVAL $end
+$var reg 14 ;% LED [13:0] $end
+$var reg 4 <% an [3:0] $end
+$var reg 2 =% color_detected [1:0] $end
+$var reg 16 >% frequency [15:0] $end
+$var reg 1 ?% prev_ir $end
+$var reg 1 @% prev_prev_ir $end
+$var reg 16 A% pulse_count [15:0] $end
+$var reg 7 B% seg [6:0] $end
+$var reg 32 C% timer [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b101111101011110000100000000 :%
+b1110000100 9%
+b10001001100 8%
+b11101101100 7%
+b100000110100 6%
+b101101010100 5%
+b110000011100 4%
+b1101011011 2%
+b1110101001 1%
+b110000110 0%
+b0 /%
+b11 .%
+b10 -%
+b1 ,%
+b11110100001001 +%
+b1100001101010 *%
+b101111101011110000100 )%
+b0 (%
+b1 '%
+b0 &%
+b110 %%
+b100 $%
+b1 #%
+b10 "%
+b11 !%
+b101 ~$
+b0 }$
+b11 |$
+b111 {$
+b1001 z$
+b1010 y$
+b1 x$
+b100 w$
+b1000 v$
+b10 u$
+b110 t$
+b101 s$
+b111101000010 r$
+b10100110000 q$
+b1000 p$
+b1010 o$
+b111 n$
+b1001 m$
+b1011 l$
+b10011100010 k$
+b1101011011 c$
+b1110101001 b$
+b110000110 a$
+b0 `$
+b11 _$
+b10 ^$
+b1 ]$
+b11110100001001 \$
+b1100001101010 [$
+b101111101011110000100 Z$
+b0 Y$
+b1 X$
+b0 W$
+b110 V$
+b100 U$
+b1 T$
+b10 S$
+b11 R$
+b101 Q$
+b0 P$
+b11 O$
+b111 N$
+b1001 M$
+b1010 L$
+b1 K$
+b100 J$
+b1000 I$
+b10 H$
+b110 G$
+b101 F$
+b111101000010 E$
+b10100110000 D$
+b1000 C$
+b1010 B$
+b111 A$
+b1001 @$
+b1011 ?$
+b10011100010 >$
+b1101011011 /$
+b1110101001 .$
+b110000110 -$
+b0 ,$
+b11 +$
+b10 *$
+b1 )$
+b11110100001001 ($
+b1100001101010 '$
+b101111101011110000100 &$
+b0 %$
+b1 $$
+b0 #$
+b110 "$
+b100 !$
+b1 ~#
+b10 }#
+b11 |#
+b101 {#
+b0 z#
+b11 y#
+b111 x#
+b1001 w#
+b1010 v#
+b1 u#
+b100 t#
+b1000 s#
+b10 r#
+b110 q#
+b101 p#
+b111101000010 o#
+b10100110000 n#
+b1000 m#
+b1010 l#
+b111 k#
+b1001 j#
+b1011 i#
+b10011100010 h#
+b10011100010000 \#
+b110010110111001101010 [#
+b1101011011 W#
+b1110101001 V#
+b110000110 U#
+b0 T#
+b11 S#
+b10 R#
+b1 Q#
+b11110100001001 P#
+b1100001101010 O#
+b101111101011110000100 N#
+b0 M#
+b1 L#
+b0 K#
+b110 J#
+b100 I#
+b1 H#
+b10 G#
+b11 F#
+b101 E#
+b0 D#
+b11 C#
+b111 B#
+b1001 A#
+b1010 @#
+b1 ?#
+b100 >#
+b1000 =#
+b10 <#
+b110 ;#
+b101 :#
+b111101000010 9#
+b10100110000 8#
+b1000 7#
+b1010 6#
+b111 5#
+b1001 4#
+b1011 3#
+b10011100010 2#
+b1101011011 z"
+b10 y"
+b0 x"
+b1 w"
+b1110101001 v"
+b110000110 u"
+b0 t"
+b11 s"
+b10 r"
+b1 q"
+b11110100001001 p"
+b1100001101010 o"
+b101111101011110000100 n"
+b0 m"
+b1 l"
+b100 k"
+b0 j"
+b110 i"
+b100 h"
+b1 g"
+b10 f"
+b11 e"
+b101 d"
+b101 c"
+b0 b"
+b11 a"
+b111 `"
+b1001 _"
+b1010 ^"
+b1 ]"
+b100 \"
+b1000 ["
+b10 Z"
+b110 Y"
+b101 X"
+b11 W"
+b111101000010 V"
+b10100110000 U"
+b1000 T"
+b1010 S"
+b111 R"
+b1001 Q"
+b1011 P"
+b10011100010 O"
+b111101000010010000000 C"
+b111101000010010000000 @"
+b11000011010100000 <"
+b0 ;"
+b1001001001111100000 :"
+b111101000010010000 9"
+b0 8"
+b1100001101010000 7"
+b110 y
+b0 x
+b100 w
+b1 v
+b11 u
+b10 t
+b1 s
+b110 r
+b111 q
+b101 p
+b101 o
+b100 n
+b11 m
+b0 l
+b10 k
+b111 j
+b1101011011 d
+b1110101001 c
+b110000110 b
+b0 a
+b11 `
+b10 _
+b1 ^
+b11110100001001 ]
+b1100001101010 \
+b101111101011110000100 [
+b0 Z
+b1 Y
+b0 X
+b110 W
+b100 V
+b1 U
+b10 T
+b11 S
+b101 R
+b0 Q
+b11 P
+b111 O
+b1001 N
+b1010 M
+b1 L
+b100 K
+b1000 J
+b10 I
+b110 H
+b101 G
+b111101000010 F
+b10100110000 E
+b1000 D
+b1010 C
+b111 B
+b1001 A
+b1011 @
+b10011100010 ?
+$end
+#0
+$dumpvars
+b0 C%
+b1011011 B%
+b0 A%
+x@%
+x?%
+b0 >%
+b10 =%
+b1110 <%
+bx ;%
+b10 3%
+b0 j$
+b0 i$
+b0 h$
+b0 g$
+b0 f$
+b1 e$
+b0 d$
+b10 =$
+b0 <$
+b0 ;$
+b0 :$
+b0 9$
+b0 8$
+b10 7$
+b10 6$
+b10 5$
+b0 4$
+b0 3$
+b0 2$
+b0 1$
+00$
+b1 g#
+b0 f#
+b1 e#
+b0 d#
+b1 c#
+b0 b#
+b1 a#
+b0 `#
+b1 _#
+b0 ^#
+b1110 ]#
+b0 Z#
+b0 Y#
+b0 X#
+01#
+b10 0#
+b10 /#
+b10 .#
+b10 -#
+0,#
+b0 +#
+b0 *#
+b0 )#
+b0 (#
+b0 '#
+1&#
+b1110 %#
+b1 $#
+bx ##
+bx "#
+bx !#
+bx ~"
+x}"
+0|"
+x{"
+0N"
+xM"
+xL"
+xK"
+b10 J"
+b10 I"
+b10 H"
+b1110 G"
+b10 F"
+b1 E"
+b0 D"
+b0 B"
+b0 A"
+b0 ?"
+b0 >"
+b0 ="
+06"
+05"
+bx 4"
+bx 3"
+x2"
+x1"
+bx 0"
+bx /"
+bx ."
+x-"
+1,"
+x+"
+1*"
+x)"
+x("
+x'"
+0&"
+0%"
+0$"
+bx #"
+bx ""
+bx !"
+bx ~
+bx }
+bx |
+bx {
+xz
+xi
+xh
+b0 g
+zf
+bz e
+bxzz0zzz000zzz >
+bx =
+bx <
+b1110 ;
+b1 :
+bx 9
+bz 8
+b0 7
+bz 6
+bz 5
+z4
+b0 3
+02
+01
+00
+0/
+0.
+0-
+0,
+x+
+x*
+bxzz0zzz000zzz )
+x(
+x'
+x&
+x%
+b1110 $
+0#
+0"
+b1 !
+$end
+#5000
+b1 C%
+0*
+02"
+0+
+01"
+0&#
+b0zz0zzz000zzz )
+b0zz0zzz000zzz >
+1#
+b1 f$
+10$
+b1 ^#
+b1 Y#
+0?%
+b0 9
+b0 ##
+1i
+1+"
+1-"
+1)"
+1("
+1'"
+16"
+b1 A"
+15"
+b1 D"
+10
+#10000
+00

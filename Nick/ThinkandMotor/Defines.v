@@ -1,0 +1,1 @@
+`define SigWidth (13)
