@@ -188,7 +188,7 @@ Each module includes comprehensive testbenches:
 
 ## 📄 License
 
-This project is developed for educational purposes as part of ECE-3331 Robotics Project Lab at [University Name].
+This project is developed for educational purposes as part of ECE-3331 Robotics Project Lab at Texas Tech University.
 
 ## 🤝 Contributing
 
